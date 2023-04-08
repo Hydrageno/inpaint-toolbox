@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div id="navigator">
-      <!--navigator content, include different function anchor, and language select-->
-      <!--导航栏：包含不同功能区的锚点、语言选择-->
-      <!--center the #nvaigator-main-->
-      <!--导航栏分为主内容区、左右边块让内容区居中-->
+      <!--navigator content, include different function anchor, and language select.-->
+      <!--导航栏：包含不同功能区的锚点、语言选择。-->
+      <!--center the #nvaigator-main.-->
+      <!--导航栏分为主内容区、左右边块让内容区居中。-->
       <div id="navigator-leftborder"></div>
       <div id="navigator-main">
         <div id="navigator-main-traidtion-inpaint">
@@ -28,18 +28,22 @@
           </span>
         </div>
       </div>
-      <div id="navigator-rightborder"></div>
+      <div id="navigator-rightborder">
+        <!--use switch to choose display language.-->
+        <!--使用lan来控制展示的语言-->
+        <el-switch v-model="lan" active-text="EN" inactive-text="ZH" size="large" @change="changeDisplayLan()"></el-switch>
+      </div>
     </div>
     <div id="body">
-      <!--main content: include traditional inpaint、super-resolution、removal、inpaint with segmentation-->
-      <!--主功能区：包含传统图像修复、超分辨率、去除信息、基于语义分割的指导性修复-->
+      <!--main content: include traditional inpaint、super-resolution、removal、inpaint with segmentation.-->
+      <!--主功能区：包含传统图像修复、超分辨率、去除信息、基于语义分割的指导性修复。-->
       <tradition-inpaint id="body-tradition-inpaint"></tradition-inpaint>
       <super-resolution id="body-super-resolution"></super-resolution>
       <removal-inpaint id="body-removal-inpaint"></removal-inpaint>
       <segmentation-inpaint id="body-segmentation-inpaint"></segmentation-inpaint>
     </div>
     <div id="footer">
-      <!--thankful for sponsor-->
+      <!--thankful for sponsor.-->
       <!--使用的开源代码，诚挚感谢使用的开源项目开发者！-->
     </div>
   </div>
@@ -62,6 +66,9 @@ export default {
   },
   data(){
     return{
+      // 1 represents zh, 0 represents en.
+      // 默认1为中文，0为英文
+      lan: 1, 
     }
   },
   methods:{
@@ -79,6 +86,14 @@ export default {
         top: anchor.offsetTop,
         behavior: "smooth"
       })
+    },
+    changeDisplayLan(){
+      // if current lan is 1, means that current lan is zh, change to en.
+      // 如果lan为1说明当前页面为中文，需要切换到英文。
+      let newLan = (this.lan == 1) ? 'en' : 'zh';
+      
+      this.$i18n.locale = newLan;
+      console.log(this.$i18n.locale);
     }
   },
   computed:{
@@ -95,7 +110,7 @@ export default {
     },
     segmentationInpaintNavigatorMessage(){
       return this.$t('navigatorText.segmentationInpaintNavigatorText');
-    }
+    },
   }
 }
 </script>
@@ -142,7 +157,7 @@ export default {
     @navigator-border-width: 1;
     #navigator-leftborder{
       flex: @navigator-border-width;
-      background-color: pink;
+      //background-color: pink;
     }
     #navigator-main{
       flex: 10 - 2 * @navigator-border-width;
@@ -233,7 +248,12 @@ export default {
     }
     #navigator-rightborder{
       flex: @navigator-border-width;
-      background-color: aqua;
+      //background-color: aqua;
+      // center the el-switch both horizontal and vertical.
+      // 让语言选择器水平和垂直居中。
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   #body{
