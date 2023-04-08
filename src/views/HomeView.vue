@@ -8,21 +8,34 @@
       <div id="navigator-leftborder"></div>
       <div id="navigator-main">
         <div id="navigator-main-traidtion-inpaint">
+          <!--icon enrich content-->
+          <el-icon>
+            <View :size="iconSize"></View>
+          </el-icon>
           <span class="navigator-text" @click="goAnchor('body-tradition-inpaint')">
             {{ traditionInpaintNavigatorMessage }}
           </span>
         </div>
         <div id="navigator-main-super-resolution">
+          <el-icon>
+            <ZoomIn :size="iconSize"></ZoomIn>
+          </el-icon>
           <span class="navigator-text" @click="goAnchor('body-super-resolution')">
             {{ superResolutionNavigatorMessage }}
           </span>
         </div>
         <div id="navigator-main-removal-inpaint">
+          <el-icon>
+            <DeleteFilled :size="iconSize"></DeleteFilled>
+          </el-icon>
           <span class="navigator-text" @click="goAnchor('body-removal-inpaint')">
             {{ removalInpaintNavigatorMessage }}
           </span>
         </div>
         <div id="navigator-main-segmentation-inpaint">
+          <el-icon>
+            <Grid :size="iconSize"></Grid>
+          </el-icon>
           <span class="navigator-text" @click="goAnchor('body-segmentation-inpaint')">
             {{ segmentationInpaintNavigatorMessage }}
           </span>
@@ -55,6 +68,7 @@ import TraditionInpaint from '@/components/homeview-can/TraditionInpaint.vue';
 import SuperResolution from '@/components/homeview-can/SuperResolution.vue';
 import RemovalInpaint from '@/components/homeview-can/RemovalInpaint.vue';
 import SegmentationInpaint from '@/components/homeview-can/SegmentationInpaint.vue';
+import { View, ZoomIn, DeleteFilled, Grid } from '@element-plus/icons-vue'
 
 export default {
   name: 'HomeView',
@@ -63,12 +77,17 @@ export default {
     SuperResolution,
     RemovalInpaint,
     SegmentationInpaint,
+    View,
+    ZoomIn,
+    DeleteFilled,
+    Grid
   },
   data(){
     return{
       // 1 represents zh, 0 represents en.
       // 默认1为中文，0为英文
       lan: 1, 
+      iconSize: "large",
     }
   },
   methods:{
@@ -177,21 +196,16 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: rgb(147,147,147);
         //background-color: blue;
         // set the style of navigator text.
         // 设置导航文字的样式。
         .navigator-text{
           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           font-size: 4vh;
-          color: rgb(147,147,147);
           // user can't select the text.
           // 通过none来阻止用户选中文字。
           user-select: none;
-        }
-        .navigator-text:hover{
-          // set the style when hover the .navigator-text.
-          // 当用户悬浮鼠标在文字上时候，改变文字颜色。
-          color: black;
         }
       }
       #navigator-main-super-resolution{
@@ -201,14 +215,11 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: rgb(147,147,147);
         .navigator-text{
           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           font-size: 4vh;
-          color: rgb(147,147,147);
           user-select: none;
-        }
-        .navigator-text:hover{
-          color: black;
         }
       }
       #navigator-main-removal-inpaint{
@@ -218,14 +229,11 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: rgb(147,147,147);
         .navigator-text{
           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           font-size: 4vh;
-          color: rgb(147,147,147);
           user-select: none;
-        }
-        .navigator-text:hover{
-          color: black;
         }
       }
       #navigator-main-segmentation-inpaint{
@@ -235,15 +243,17 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: rgb(147,147,147);
         .navigator-text{
           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           font-size: 4vh;
-          color: rgb(147,147,147);
           user-select: none;
         }
-        .navigator-text:hover{
-          color: black;
-        }
+      }
+      #navigator-main-traidtion-inpaint:hover,#navigator-main-super-resolution:hover, #navigator-main-removal-inpaint:hover, #navigator-main-segmentation-inpaint:hover{
+        // set the style when hover the #navigator-main-traidtion-inpaint
+        // 当用户悬浮鼠标在文字上时候，改变文字颜色。
+        color: black;
       }
     }
     #navigator-rightborder{
@@ -255,6 +265,10 @@ export default {
       justify-content: center;
       align-items: center;
     }
+    // set the border-bottom style and width.
+    // 为导航条设置底部样式方便区分。
+    border-bottom-style: groove;
+    border-bottom-width: 1px;
   }
   #body{
     // decide the percentage of navigator area.
