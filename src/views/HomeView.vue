@@ -58,6 +58,12 @@
     <div id="footer">
       <!--thankful for sponsor.-->
       <!--使用的开源代码，诚挚感谢使用的开源项目开发者！-->
+      <div id="thankful">
+        Code Base on 
+        <el-link href="https://github.com/andreas128/RePaint" type="info">RePaint</el-link>,
+        <el-link href="https://github.com/xinntao/Real-ESRGAN" type="info">Real-ESRGAN</el-link>,
+        <el-link href="https://github.com/plemeri/InSPyReNet" type="info">InSPyReNet</el-link>
+      </div>
     </div>
   </div>
 </template>
@@ -309,7 +315,23 @@ export default {
     flex: @navigator-height;
     // initialize the color of background in developing period.
     // 前期开发时，使用不同颜色来占据位置确定基本布局。
-    background-color: blue;
+    background-color: black;
+    // center the el-switch both horizontal and vertical.
+    // 让文字水平和垂直居中。
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #thankful{
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: 4vh;
+      color: white;
+      user-select: none;
+      .el-link{
+        font-size: 4vh;
+        color: white;
+        user-select: none;
+      }
+    }
   }
 }
 </style>

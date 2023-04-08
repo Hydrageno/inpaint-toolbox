@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import 'element-plus/dist/index.css'
-import {ElSwitch, ElIcon} from 'element-plus'
+import {ElSwitch, ElIcon, ElLink} from 'element-plus'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -26,6 +26,7 @@ const i18n = createI18n({
 app.use(i18n);
 app.component(ElSwitch.name, ElSwitch);
 app.component(ElIcon.name, ElIcon);
+app.component(ElLink.name, ElLink);
 // mount the Application
 app.mount("#app");
 
