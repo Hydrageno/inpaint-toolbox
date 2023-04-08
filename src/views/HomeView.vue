@@ -7,6 +7,10 @@
     <div id="body">
       <!--main content: include traditional inpaint、super-resolution、removal、inpaint with segmentation-->
       <!--主功能区：包含传统图像修复、超分辨率、去除信息、基于语义分割的指导性修复-->
+      <tradition-inpaint id="body-tradition-inpaint"></tradition-inpaint>
+      <super-resolution id="body-super-resolution"></super-resolution>
+      <removal-inpaint id="body-removal-inpaint"></removal-inpaint>
+      <segmentation-inpaint id="body-segmentation-inpaint"></segmentation-inpaint>
     </div>
     <div id="footer">
       <!--thankful for sponsor-->
@@ -17,12 +21,18 @@
 
 <script>
 // @ is an alias to /src
-
+import TraditionInpaint from '@/components/homeview-can/TraditionInpaint.vue';
+import SuperResolution from '@/components/homeview-can/SuperResolution.vue';
+import RemovalInpaint from '@/components/homeview-can/RemovalInpaint.vue';
+import SegmentationInpaint from '@/components/homeview-can/SegmentationInpaint.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    
+    TraditionInpaint,
+    SuperResolution,
+    RemovalInpaint,
+    SegmentationInpaint,
   }
 }
 </script>
@@ -69,6 +79,31 @@ export default {
     // initialize the color of background in developing period.
     // 前期开发时，使用不同颜色来占据位置确定基本布局。
     background-color: green;
+    // let inner element flow by column
+    // 让HomeView的#body中的功能区按照列排序
+    display: flex;
+    flex-direction: column;
+    // let four function the same height;
+    // differentiate the function by differen color in developing period.
+    // 让四个功能区高度相同（后期可以根据需求调整）
+    // 开发阶段按照不同的颜色区分不同的功能区，来调整布局
+    @function-height: 2.5;
+    #body-tradition-inpaint{
+      flex: @function-height;
+      background-color: blue;
+    }
+    #body-super-resolution{
+      flex: @function-height;
+      background-color: purple;
+    }
+    #body-removal-inpaint{
+      flex: @function-height;
+      background-color: yellow;
+    }
+    #body-segmentation-inpaint{
+      flex: @function-height;
+      background-color: red;
+    }
   }
   #footer{
     // decide the percentage of navigator area.
