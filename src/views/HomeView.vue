@@ -7,10 +7,26 @@
       <!--导航栏分为主内容区、左右边块让内容区居中-->
       <div id="navigator-leftborder"></div>
       <div id="navigator-main">
-        <div id="navigator-main-traidtion-inpaint"></div>
-        <div id="navigator-main-super-resolution"></div>
-        <div id="navigator-main-removal-inpaint"></div>
-        <div id="navigator-main-segmentation-inpaint"></div>
+        <div id="navigator-main-traidtion-inpaint">
+          <span class="navigator-text" @click="goAnchor('body-tradition-inpaint')">
+            {{ traditionInpaintNavigatorMessage }}
+          </span>
+        </div>
+        <div id="navigator-main-super-resolution">
+          <span class="navigator-text" @click="goAnchor('body-super-resolution')">
+            {{ superResolutionNavigatorMessage }}
+          </span>
+        </div>
+        <div id="navigator-main-removal-inpaint">
+          <span class="navigator-text" @click="goAnchor('body-removal-inpaint')">
+            {{ removalInpaintNavigatorMessage }}
+          </span>
+        </div>
+        <div id="navigator-main-segmentation-inpaint">
+          <span class="navigator-text" @click="goAnchor('body-segmentation-inpaint')">
+            {{ segmentationInpaintNavigatorMessage }}
+          </span>
+        </div>
       </div>
       <div id="navigator-rightborder"></div>
     </div>
@@ -43,6 +59,43 @@ export default {
     SuperResolution,
     RemovalInpaint,
     SegmentationInpaint,
+  },
+  data(){
+    return{
+    }
+  },
+  methods:{
+    goAnchor(id){
+      /**
+       * when user click the anchor character like 'TraditionInpaint', window scroll to the area.
+       * 当用户点击对应的锚文字时候，会划到相应的区域。
+       */
+      // fetch the area by id.
+      // 通过ID获得对应的元素。
+      var anchor = document.getElementById(id);
+      // perform the appropriate swipe action.
+      // 执行相应的划动动作。
+      window.scrollTo({
+        top: anchor.offsetTop,
+        behavior: "smooth"
+      })
+    }
+  },
+  computed:{
+    traditionInpaintNavigatorMessage(){
+      // switch the content follow the value of 'language' attribute in i18n
+      // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容
+      return this.$t('navigatorText.traditionInpaintNavigatorText');
+    },
+    superResolutionNavigatorMessage(){
+      return this.$t('navigatorText.superResolutionNavigatorText');
+    },
+    removalInpaintNavigatorMessage(){
+      return this.$t('navigatorText.removalInpaintNavigatorText');
+    },
+    segmentationInpaintNavigatorMessage(){
+      return this.$t('navigatorText.segmentationInpaintNavigatorText');
+    }
   }
 }
 </script>
@@ -59,8 +112,8 @@ export default {
   // 让内部元素按照竖向排序
   display: flex;
   flex-direction: column;
-  // 100 = navigator-height + body-height + footer-height, while navigator-height equals with footer-height
-  // 导航栏与页脚栏（致谢栏）占据同样高度，主体部分主要内容
+  // 100 = navigator-height + body-height + footer-height, while navigator-height equals with footer-height.
+  // 导航栏与页脚栏（致谢栏）占据同样高度，主体部分主要内容。
   @navigator-height: 2;
   @body-height: 96;
   #navigator{
@@ -71,7 +124,7 @@ export default {
     // 当滚动页面的使用，导航栏将覆盖对应的位置内容，使用白色塑造“烟雾”的效果。
     // initialize the color of background in developing period.
     // 前期开发时，使用不同颜色来占据位置确定基本布局。
-    background-color: black;
+    background-color: rgba(255, 255, 255, 0.9); 
     // use the 'sticky' value to stick the #navigator while scrolling.
     // 通过粘滞定位，当滚动页面的时候导航栏和页面顶部相对静止。
     position: sticky;
@@ -81,8 +134,8 @@ export default {
     // upgrade dimensions, different from #body and #footer.
     // 让导航栏升级维度，在滚动页面时候，导航栏会覆盖#body和#footer内容。
     z-index: 10;
-    // let inner element flow by row direction
-    // 让内部元素通过行方向排列
+    // let inner element flow by row direction.
+    // 让内部元素通过行方向排列。
     display: flex;
     flex-direction: row;
     // navigator-width = navigator-border-width * 2 + navigator-main-width * 4;
@@ -93,27 +146,89 @@ export default {
     }
     #navigator-main{
       flex: 10 - 2 * @navigator-border-width;
-      background-color: yellowgreen;
-      // let inner element flow by row direction
-      // 让内部元素通过行方向排列
+      //background-color: yellowgreen;
+      // let inner element flow by row direction.
+      // 让内部元素通过行方向排列。
       display: flex;
       flex-direction: row;
       @function-width: 2.5;
       #navigator-main-traidtion-inpaint{
         flex: @function-width;
-        background-color: blue;
+        // set the style of cursor.
+        // 设置鼠标悬浮时候样式。
+        cursor: pointer;
+        // center the navigator-text
+        // 让navigator-text水平和垂直居中
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //background-color: blue;
+        // set the style of navigator text.
+        // 设置导航文字的样式。
+        .navigator-text{
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 4vh;
+          color: rgb(147,147,147);
+          // user can't select the text.
+          // 通过none来阻止用户选中文字。
+          user-select: none;
+        }
+        .navigator-text:hover{
+          // set the style when hover the .navigator-text.
+          // 当用户悬浮鼠标在文字上时候，改变文字颜色。
+          color: black;
+        }
       }
       #navigator-main-super-resolution{
         flex: @function-width;
-        background-color: black;
+        cursor: pointer;
+        //background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .navigator-text{
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 4vh;
+          color: rgb(147,147,147);
+          user-select: none;
+        }
+        .navigator-text:hover{
+          color: black;
+        }
       }
       #navigator-main-removal-inpaint{
         flex: @function-width;
-        background-color: green;
+        cursor: pointer;
+        //background-color: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .navigator-text{
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 4vh;
+          color: rgb(147,147,147);
+          user-select: none;
+        }
+        .navigator-text:hover{
+          color: black;
+        }
       }
       #navigator-main-segmentation-inpaint{
         flex: @function-width;
-        background-color: yellow;
+        cursor: pointer;
+        //background-color: yellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .navigator-text{
+          font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 4vh;
+          color: rgb(147,147,147);
+          user-select: none;
+        }
+        .navigator-text:hover{
+          color: black;
+        }
       }
     }
     #navigator-rightborder{
@@ -128,14 +243,14 @@ export default {
     // initialize the color of background in developing period.
     // 前期开发时，使用不同颜色来占据位置确定基本布局。
     background-color: green;
-    // let inner element flow by column
-    // 让HomeView的#body中的功能区按照列排序
+    // let inner element flow by column.
+    // 让HomeView的#body中的功能区按照列排序。
     display: flex;
     flex-direction: column;
     // let four function the same height;
     // differentiate the function by differen color in developing period.
-    // 让四个功能区高度相同（后期可以根据需求调整）
-    // 开发阶段按照不同的颜色区分不同的功能区，来调整布局
+    // 让四个功能区高度相同（后期可以根据需求调整）。
+    // 开发阶段按照不同的颜色区分不同的功能区，来调整布局。
     @function-height: 2.5;
     #body-tradition-inpaint{
       flex: @function-height;
