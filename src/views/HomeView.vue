@@ -3,6 +3,16 @@
     <div id="navigator">
       <!--navigator content, include different function anchor, and language select-->
       <!--导航栏：包含不同功能区的锚点、语言选择-->
+      <!--center the #nvaigator-main-->
+      <!--导航栏分为主内容区、左右边块让内容区居中-->
+      <div id="navigator-leftborder"></div>
+      <div id="navigator-main">
+        <div id="navigator-main-traidtion-inpaint"></div>
+        <div id="navigator-main-super-resolution"></div>
+        <div id="navigator-main-removal-inpaint"></div>
+        <div id="navigator-main-segmentation-inpaint"></div>
+      </div>
+      <div id="navigator-rightborder"></div>
     </div>
     <div id="body">
       <!--main content: include traditional inpaint、super-resolution、removal、inpaint with segmentation-->
@@ -71,6 +81,45 @@ export default {
     // upgrade dimensions, different from #body and #footer.
     // 让导航栏升级维度，在滚动页面时候，导航栏会覆盖#body和#footer内容。
     z-index: 10;
+    // let inner element flow by row direction
+    // 让内部元素通过行方向排列
+    display: flex;
+    flex-direction: row;
+    // navigator-width = navigator-border-width * 2 + navigator-main-width * 4;
+    @navigator-border-width: 1;
+    #navigator-leftborder{
+      flex: @navigator-border-width;
+      background-color: pink;
+    }
+    #navigator-main{
+      flex: 10 - 2 * @navigator-border-width;
+      background-color: yellowgreen;
+      // let inner element flow by row direction
+      // 让内部元素通过行方向排列
+      display: flex;
+      flex-direction: row;
+      @function-width: 2.5;
+      #navigator-main-traidtion-inpaint{
+        flex: @function-width;
+        background-color: blue;
+      }
+      #navigator-main-super-resolution{
+        flex: @function-width;
+        background-color: black;
+      }
+      #navigator-main-removal-inpaint{
+        flex: @function-width;
+        background-color: green;
+      }
+      #navigator-main-segmentation-inpaint{
+        flex: @function-width;
+        background-color: yellow;
+      }
+    }
+    #navigator-rightborder{
+      flex: @navigator-border-width;
+      background-color: aqua;
+    }
   }
   #body{
     // decide the percentage of navigator area.
