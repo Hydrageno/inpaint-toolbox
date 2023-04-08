@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
-import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import {ElSwitch} from 'element-plus'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -14,8 +14,6 @@ const app = createApp(App);
 app.use(store);
 // use vue-router to realize page-jump
 app.use(router);
-// use element-plus ui designer for vue3 project
-app.use(ElementPlus);
 // use vue-i18n
 const i18n = createI18n({
     locale: 'zh',
@@ -26,6 +24,7 @@ const i18n = createI18n({
     silentTranslationWar: true
 })
 app.use(i18n);
+app.component(ElSwitch.name, ElSwitch);
 // mount the Application
 app.mount("#app");
 
