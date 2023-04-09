@@ -17,7 +17,7 @@
             </div>   
         </div>
         <div class="tradition-inpaint-upload-image">
-            <upload-image></upload-image>
+            <upload-image :egImageAddrs="egImageTIAddrs"></upload-image>
         </div>
         <div class="tradition-inpaint-use-case"></div>
     </div>
@@ -30,8 +30,18 @@ export default{
     components: {
         UploadImage
     },
+    data(){
+        return {
+            egImageTIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
+            "https://i.328888.xyz/2023/03/15/J5vEN.png",
+            "https://i.328888.xyz/2023/03/15/J5vEN.png",
+            "https://i.328888.xyz/2023/03/15/J5vEN.png"]
+        }
+    },
     computed:{
         front(){
+            // switch the content follow the value of 'language' attribute in i18n.
+            // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容。
             return this.$t('homeview.traditionInpaint.descriptionText.front');
         },
         object(){
@@ -112,12 +122,12 @@ export default{
         }
     }
     .tradition-inpaint-upload-image{
-        background-color: yellow;
+        //background-color: yellow;
         flex: 2;
 
     }
     .tradition-inpaint-use-case{
-        background-color: pink;
+        background-color: rgb(243,244,246);
         flex: 2;
     }
 }
