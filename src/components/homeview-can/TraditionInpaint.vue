@@ -4,11 +4,11 @@
             <div class="tradition-inpaint-description-content">
                 <div class="tradition-inpaint-description-text">
                     {{ front }}
-                    <span class="tradition-inpaint-description-text-fluorescence">{{ object }}</span>&nbsp;,
-                    <span class="tradition-inpaint-description-text-fluorescence">{{ people }}</span>&nbsp;,
-                    <span class="tradition-inpaint-description-text-fluorescence">{{ scenery }}</span>&nbsp;,
+                    <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ object }}&nbsp;</span>&nbsp;,
+                    <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ people }}&nbsp;</span>&nbsp;,
+                    <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ scenery }}&nbsp;</span>&nbsp;,
                     <br>
-                    <span class="tradition-inpaint-description-text-fluorescence">{{ animation }}</span>
+                    <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ animation }}&nbsp;</span>
                     {{ later }}
                     <br>
                     <span class="tradition-inpaint-description-sorry-text-fluorescence">{{ helpful }}</span>
@@ -16,14 +16,20 @@
                 <img  src="@/assets/demo.gif" class="tradition-inpaint-description-animation">
             </div>   
         </div>
-        <div class="tradition-inpaint-upload-image"></div>
+        <div class="tradition-inpaint-upload-image">
+            <upload-image></upload-image>
+        </div>
         <div class="tradition-inpaint-use-case"></div>
     </div>
 </template>
 
 <script>
+import UploadImage from "@/components/upload-can/UploadImage.vue"
 export default{
     name: 'TraditionInpaint',
+    components: {
+        UploadImage
+    },
     computed:{
         front(){
             return this.$t('homeview.traditionInpaint.descriptionText.front');
@@ -101,13 +107,14 @@ export default{
                 border-radius: 30px;
                 border-style: none;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                width: 30%;
+                width: 25%;
             }   
         }
     }
     .tradition-inpaint-upload-image{
         background-color: yellow;
         flex: 2;
+
     }
     .tradition-inpaint-use-case{
         background-color: pink;
