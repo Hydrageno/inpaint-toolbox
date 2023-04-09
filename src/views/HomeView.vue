@@ -282,7 +282,7 @@ export default {
     flex: @body-height;
     // initialize the color of background in developing period.
     // 前期开发时，使用不同颜色来占据位置确定基本布局。
-    background-color: green;
+    //background-color: green;
     // let inner element flow by column.
     // 让HomeView的#body中的功能区按照列排序。
     display: flex;
@@ -294,7 +294,7 @@ export default {
     @function-height: 2.5;
     #body-tradition-inpaint{
       flex: @function-height;
-      background-color: blue;
+      //background-color: blue;
     }
     #body-super-resolution{
       flex: @function-height;
