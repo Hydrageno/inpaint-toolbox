@@ -125,16 +125,16 @@ export default {
     traditionInpaintNavigatorMessage(){
       // switch the content follow the value of 'language' attribute in i18n
       // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容
-      return this.$t('navigatorText.traditionInpaintNavigatorText');
+      return this.$t('homeview.navigatorText.traditionInpaintNavigatorText');
     },
     superResolutionNavigatorMessage(){
-      return this.$t('navigatorText.superResolutionNavigatorText');
+      return this.$t('homeview.navigatorText.superResolutionNavigatorText');
     },
     removalInpaintNavigatorMessage(){
-      return this.$t('navigatorText.removalInpaintNavigatorText');
+      return this.$t('homeview.navigatorText.removalInpaintNavigatorText');
     },
     segmentationInpaintNavigatorMessage(){
-      return this.$t('navigatorText.segmentationInpaintNavigatorText');
+      return this.$t('homeview.navigatorText.segmentationInpaintNavigatorText');
     },
   }
 }
