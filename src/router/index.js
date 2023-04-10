@@ -7,6 +7,11 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+    path: '/tradition-inpaint',
+    name: 'tradition-inpaint',
+    component: () => import('@/views/TraditionInpaintView.vue')
+  }
   // {
   //   path: '/about',
   //   name: 'about',
