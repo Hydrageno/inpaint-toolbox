@@ -21,7 +21,20 @@
             <!--使用组件通信给egImageAddrs赋值-->
             <upload-image :egImageAddrs="egImageSEIAddrs"></upload-image>
         </div>
-        <div class="saliency-edge-inpaint-use-case"></div>
+        <div class="saliency-edge-inpaint-use-case">
+            <div class="saliency-edge-inpaint-use-case-content">
+                <!--title for tradition-inpaint-->
+                <!--为图像修复添加标题-->
+                <div class="saliency-edge-inpaint-use-case-title">
+                    <h1> {{ useCase }} </h1>
+                </div>
+                <!--lesson picture for saliency-edge-inpaint-->
+                <!--为图像修复添加教程图片-->
+                <div class="saliency-edge-inpaint-use-case-picture">
+                    <img src="@/assets/usecase.jpg">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -54,7 +67,10 @@ export default{
         },
         tryTool(){
             return this.$t('homeview.saliencyEdgeInpaint.descriptionText.tryTool')
-        }
+        },
+        useCase(){
+            return this.$t('homeview.saliencyEdgeInpaint.useCase')
+        },
     }
 }
 </script>
@@ -112,12 +128,41 @@ export default{
         }
     }
     .saliency-edge-inpaint-upload-image{
-        background-color: rgb(176, 255, 225);
+        background-color: rgb(176, 255, 255);
         flex: 2;
     }
     .saliency-edge-inpaint-use-case{
-        background-color: red;
+        background-color: rgb(176, 255, 255);
         flex: 2;
+        .saliency-edge-inpaint-use-case-content{
+            height: 100%;
+            // let inner element center horizontal and vertical.
+            // 让内部元素水平和垂直居中
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            flex-direction: column;
+            .saliency-edge-inpaint-use-case-title{
+                flex: 1;
+                h1{
+                    position: relative;
+                    top: 30%;
+                    font-family: 'Times New Roman', Times, serif;
+                }
+            }
+            .saliency-edge-inpaint-use-case-picture{
+                flex: 4;
+                // let inner element center horizontal and vertical.
+                // 让内部元素水平和垂直居中
+                display: flex;
+                justify-content: center;
+                img{
+                    width: 60%;
+                    position: relative;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                }
+            }
+        }
     }
 }
 </style>
