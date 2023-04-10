@@ -10,7 +10,7 @@
         <!--container for canvas-->
         <!--画布的容器-->
         <div class="tradition-inpaint-view-content" ref="traditionInpaintViewContent">
-
+            <canvas class="tradition-inpaint-view-canvas" ref="inpaintCanvas"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
@@ -54,6 +54,7 @@
 <script>
 import { EditPen } from '@element-plus/icons-vue'
 import { ref } from 'vue'
+import store from '@/store'
 export default{
     name: 'TraditionInpaintView',
     components:{
@@ -61,6 +62,7 @@ export default{
     },
     data(){
         return {
+            imageTIURL: store.state.imageURL,
             lineWidth: 0,
             eraseOn: false,
             modeValue: ref(''),
@@ -129,7 +131,25 @@ export default{
                 }
             ]
         }
-    }
+    },
+    mounted(){
+    this.$refs.inpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+    this.$refs.inpaintCanvas.height = store.state.imageHeight;
+    this.$refs.inpaintCanvas.width = store.state.imageWidth;
+
+    // add wheel zoom event
+    const inpaintViewContent = this.$refs.inpaintViewContent;
+    inpaintViewContent.addEventListener('wheel', this.handleZoom);
+
+    // draw the background for canvas
+    const inpaintCanvas = this.$refs.inpaintCanvas;
+    const ctx = inpaintCanvas.getContext('2d');
+
+    // set context to content of picture
+    this.context = ctx;
+    this.context.lineJoin = 'round';
+    this.context.lineCap = 'round';
+  }
 }
 </script>
 
@@ -159,6 +179,11 @@ h3{
             display: flex;
             justify-content: center;
         }
+    }
+    .tradition-inpaint-view-content{
+        transform-origin: left top;
+        margin: 0 auto;
+        width: fit-content;
     }
     .tradition-inpaint-view-toolbar{
         height: 2.0em;
