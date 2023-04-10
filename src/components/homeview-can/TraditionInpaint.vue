@@ -7,13 +7,13 @@
                 <!--add description text for tradition-inpaint-->
                 <!--为图像修复添加描述性文字-->
                 <div class="tradition-inpaint-description-text">
-                    {{ front }}
+                    <span>{{ front }}</span>
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ object }}&nbsp;</span>&nbsp;,
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ people }}&nbsp;</span>&nbsp;,
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ scenery }}&nbsp;</span>&nbsp;,
                     <br>
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ animation }}&nbsp;</span>
-                    {{ later }}
+                    <span>{{ later }}</span>
                     <br>
                     <span class="tradition-inpaint-description-sorry-text-fluorescence">{{ helpful }}</span>
                 </div>
