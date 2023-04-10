@@ -71,7 +71,8 @@ export default{
             // type check.
             // 类型检查
             if(['image/jpeg', 'image/jpg', 'image/png'].indexOf(file.type) == -1){
-                //output user instruction.
+                // show user instruction.
+                // 让user-instruction浮现出来
                 this.correctUpload = true;
                 return false;
             }
@@ -111,18 +112,25 @@ export default{
                             let response = xhr.response;
                             let blob = response
                             let imageURL = window.URL.createObjectURL(blob);
+                            // execute the setImageURL method in store instance.
+                            // 执行store中的setImageURL方法。
                             store.commit('setImageURL', imageURL);
-                            //console.log(store.state.imageURL);
-                            // get the image size from back-end
+                            // get the image size from back-end.
+                            // 从后端获取图片的尺寸大小。
                             xhr.open('GET', 'http://127.0.0.1:5000/get-image-size');
                             xhr.responseType = 'text'
                             xhr.onload = function(){
                                 if(xhr.status === 200 && xhr.readyState === 4){
                                     console.log("get-image-size connection build");
+                                    // split the size(height, width) from back-end.
+                                    // 将后端中的(height, width)数据进行分割。
                                     const sizeArr = xhr.response.split('_');
                                     store.commit('setImageSize', sizeArr);
+                                    // execute the setImageSize method in store instance.
+                                    // 执行store中的setImageSize方法。
                                     console.log(store.state.imageURL);
-                                    // jump to certain page
+                                    // jump to certain page.
+                                    // 跳转到对应的页面。
                                     //replacer.jumpCertainPage();  
                                 }
                             }   
@@ -213,7 +221,8 @@ export default{
                     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
                     .el-upload__text{
                         h3{
-                            // set the animation for 
+                            // set the animation for user-instruction
+                            // 设置user-instruction动画效果
                             .user-instruction-enter-active, .user-instruction-leave-active{
                                 transition: opacity .5s;
                             }
@@ -224,6 +233,7 @@ export default{
                     }
                 }
                 // set the style of icon and text when hold the mouse
+                // 设置悬浮鼠标时的图标和文字的样式
                 .el-upload-dragger:hover{
                     .el-icon{
                         color: rgb(44,62,80);
@@ -264,6 +274,7 @@ export default{
                 // 设置样例图片间的间隔
                 margin: 2%;
                 // set the style of image
+                // 设置样例图片的样式
                 border-radius: 15px;
                 border-color: #E5E7EB;
                 box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
