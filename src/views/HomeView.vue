@@ -37,7 +37,7 @@
             <Grid :size="iconSize"></Grid>
           </el-icon>
           <span class="navigator-text" @click="goAnchor('body-saliency-edge-inpaint')">
-            {{ segmentationInpaintNavigatorMessage }}
+            {{ saliencyEdgeInpaintNavigatorMessage }}
           </span>
         </div>
       </div>
@@ -132,8 +132,8 @@ export default {
     removalInpaintNavigatorMessage(){
       return this.$t('homeview.navigatorText.removalInpaintNavigatorText');
     },
-    segmentationInpaintNavigatorMessage(){
-      return this.$t('homeview.navigatorText.segmentationInpaintNavigatorText');
+    saliencyEdgeInpaintNavigatorMessage(){
+      return this.$t('homeview.navigatorText.saliencyEdgeInpaintNavigatorText');
     },
   }
 }
