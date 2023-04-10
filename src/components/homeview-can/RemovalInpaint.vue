@@ -25,7 +25,20 @@
             <!--使用组件通信给egImageAddrs赋值-->
             <upload-image :egImageAddrs="egImageRIAddrs"></upload-image>
         </div>
-        <div class="removal-inpaint-use-case"></div>
+        <div class="removal-inpaint-use-case">
+            <div class="removal-inpaint-use-case-content">
+                <!--lesson picture for removal-inpaint-->
+                <!--为去水印添加教程图片-->
+                <div class="removal-inpaint-use-case-picture">
+                    <img src="@/assets/usecase.jpg">
+                </div>
+                <!--title for removal inpaint-->
+                <!--为去水印添加标题-->
+                <div class="removal-inpaint-use-case-title">
+                    <h1> {{ useCase }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -65,6 +78,9 @@ export default{
         },
         endTool(){
             return this.$t('homeview.removalInpaint.descriptionText.endTool')
+        },
+        useCase(){
+            return this.$t('homeview.removalInpaint.useCase');
         }
     }
 }
@@ -129,6 +145,43 @@ export default{
     .removal-inpaint-use-case{
         //background-color: green;
         flex: 2;
+        .removal-inpaint-use-case-content{
+            height: 100%;
+            // let inner element flow by row.
+            // 让内部元素按照行排序
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .removal-inpaint-use-case-picture{
+            flex: 4;
+            // let inner element center horizontal and vertical.
+            // 让内部元素水平和垂直居中
+            display: flex;
+            justify-content: center;
+            img{
+                width:60%;
+                // make the title and picture closer
+                // 让标题和图片更靠近
+                position: relative;
+                left: 10%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+        .removal-inpaint-use-case-title{
+            flex: 1;
+            h1{
+                // set the wrting-mode
+                // 设置书写的方式
+                writing-mode: vertical-lr;
+                font-family:'Times New Roman', Times, serif;
+                // make the title and picture closer
+                // 让标题和图片更靠近
+                position: relative;
+                right: 10%;
+            }
+        }
     }
 }
 </style>
