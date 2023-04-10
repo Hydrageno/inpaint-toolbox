@@ -15,14 +15,41 @@
                 </div>
             </div>
         </div>
-        <div class="super-resolution-upload-image"></div>
-        <div class="super-resolution-use-case"></div>
+        <div class="super-resolution-upload-image">
+            <!--pass egImageAddrs by component communication-->
+            <!--使用组件通信给egImageAddrs赋值-->
+            <upload-image :egImageAddrs="egImageSRAddrs"></upload-image>
+        </div>
+        <div class="super-resolution-use-case">
+            <div class="super-resolution-use-case-content">
+                <!--title for super resolution-->
+                <!--为超分辨率添加标题-->
+                <div class="super-resolution-use-case-title">
+                    <h1> {{ useCase }}</h1>
+                </div>
+                <!--lesson picture for super resolution-->
+                <!--为超分辨率添加教程图片-->
+                <div class="super-resolution-use-case-picture">
+                    <img src="@/assets/usecase.jpg">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import UploadImage from "@/components/upload-can/UploadImage.vue";
 export default{
     name: 'SuperResolution',
+    components: {
+        UploadImage
+    },
+    data(){
+        return {
+            egImageSRAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
+            "https://i.328888.xyz/2023/03/15/J5vEN.png"]
+        }
+    },
     computed:{
         superResolve(){
             // switch the content follow the value of 'language' attribute in i18n.
@@ -37,6 +64,9 @@ export default{
         },
         scaleSequence(){
             return this.$t('homeview.superResolution.descriptionText.scaleSequence')
+        },
+        useCase(){
+            return this.$t('homeview.superResolution.useCase')
         }
     }
 }
@@ -95,12 +125,49 @@ export default{
         }
     }
     .super-resolution-upload-image{
-        background-color: green;
+        //background-color: green;
         flex: 2;
     }
     .super-resolution-use-case{
-        background-color: blue;
+        //background-color: rgb(133,204,248);
         flex: 2;
+        .super-resolution-use-case-content{
+            height: 100%;
+            // let inner element flow by row.
+            // 让内部元素按照行排序
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            .super-resolution-use-case-title{
+                flex: 1;
+                h1{
+                    // set the wrting-mode
+                    // 设置书写的方式
+                    writing-mode: vertical-lr;
+                    font-family:'Times New Roman', Times, serif;
+                    // make the title and picture closer
+                    // 让标题和图片更靠近
+                    position: relative;
+                    left: 99%;
+                }
+            }
+            .super-resolution-use-case-picture{
+                flex: 4;
+                // let inner element center horizontal and vertical.
+                // 让内部元素水平和垂直居中
+                display: flex;
+                justify-content: center;
+                img{
+                    width:60%;
+                    // make the title and picture closer
+                    // 让标题和图片更靠近
+                    position: relative;
+                    right: 10%;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                }
+            }
+        }
     }
 }
 </style>
