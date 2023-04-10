@@ -20,14 +20,28 @@
                 <img src="@/assets/demo.gif" class="removal-inpaint-description-animation">
             </div>
         </div>
-        <div class="removal-inpaint-upload-image"></div>
+        <div class="removal-inpaint-upload-image">
+            <!--pass egImageAddrs by component communication-->
+            <!--使用组件通信给egImageAddrs赋值-->
+            <upload-image :egImageAddrs="egImageRIAddrs"></upload-image>
+        </div>
         <div class="removal-inpaint-use-case"></div>
     </div>
 </template>
 
 <script>
+import UploadImage from "@/components/upload-can/UploadImage.vue";
 export default{
     name: 'RemovalInpaint',
+    components: {
+        UploadImage
+    },
+    data(){
+        return {
+            egImageRIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
+            "https://i.328888.xyz/2023/03/15/J5vEN.png"]
+        }
+    },
     computed:{
         picHave(){
             // switch the content follow the value of 'language' attribute in i18n.
@@ -109,11 +123,11 @@ export default{
         }
     }
     .removal-inpaint-upload-image{
-        background-color: red;
+        background-color: rgb(215, 243, 255);
         flex: 2;
     }
     .removal-inpaint-use-case{
-        background-color: green;
+        //background-color: green;
         flex: 2;
     }
 }
