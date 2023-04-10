@@ -301,7 +301,7 @@ export default {
     }
     #body-removal-inpaint{
       flex: @function-height;
-      background-color: yellow;
+      //background-color: yellow;
     }
     #body-segmentation-inpaint{
       flex: @function-height;
