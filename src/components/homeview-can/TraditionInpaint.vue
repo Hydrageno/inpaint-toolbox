@@ -1,7 +1,11 @@
 <template>
     <div class="tradition-inpaint">
+        <!--create description area for tradition-inpaint-->
+        <!--为图像修复创建描述区-->
         <div class="tradition-inpaint-description">
             <div class="tradition-inpaint-description-content">
+                <!--add description text for tradition-inpaint-->
+                <!--为图像修复添加描述性文字-->
                 <div class="tradition-inpaint-description-text">
                     {{ front }}
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ object }}&nbsp;</span>&nbsp;,
@@ -13,13 +17,30 @@
                     <br>
                     <span class="tradition-inpaint-description-sorry-text-fluorescence">{{ helpful }}</span>
                 </div>
+                <!--add description animation for tradition-inpaint-->
+                <!--为图像修复添加描述性动画-->
                 <img  src="@/assets/demo.gif" class="tradition-inpaint-description-animation">
             </div>   
         </div>
         <div class="tradition-inpaint-upload-image">
+            <!--pass egImageAddrs by component communication-->
+            <!--使用组件通信给egImageAddrs赋值-->
             <upload-image :egImageAddrs="egImageTIAddrs"></upload-image>
         </div>
-        <div class="tradition-inpaint-use-case"></div>
+        <div class="tradition-inpaint-use-case">
+            <div class="tradition-inpaint-use-case-content">
+                <!--title for tradition-inpaint-->
+                <!--为图像修复添加标题-->
+                <div class="tradition-inpaint-use-case-title">
+                    <h1> {{ useCase }} </h1>
+                </div>
+                <!--lesson picture for tradition-inpaint-->
+                <!--为图像修复添加教程图片-->
+                <div class="tradition-inpaint-use-case-picture">
+                    <img src="@/assets/usecase.jpg">
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -62,6 +83,9 @@ export default{
         helpful(){
             return this.$t('homeview.traditionInpaint.descriptionText.helpful');
         },
+        useCase(){
+            return this.$t('homeview.traditionInpaint.useCase')
+        }
     }
 }
 </script>
@@ -129,6 +153,35 @@ export default{
     .tradition-inpaint-use-case{
         background-color: rgb(243,244,246);
         flex: 2;
+        .tradition-inpaint-use-case-content{
+            height: 100%;
+            // let inner element center horizontal and vertical.
+            // 让内部元素水平和垂直居中
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            flex-direction: column;
+            .tradition-inpaint-use-case-title{
+                flex: 1;
+                h1{
+                    position: relative;
+                    top: 30%;
+                    font-family: 'Times New Roman', Times, serif;
+                }
+            }
+            .tradition-inpaint-use-case-picture{
+                flex: 4;
+                // let inner element center horizontal and vertical.
+                // 让内部元素水平和垂直居中
+                display: flex;
+                justify-content: center;
+                img{
+                    width: 60%;
+                    position: relative;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                }
+            }
+        }
     }
 }
 </style>
