@@ -16,14 +16,27 @@
                 </div>
             </div>
         </div>
-        <div class="saliency-edge-inpaint-upload-image"></div>
+        <div class="saliency-edge-inpaint-upload-image">
+            <!--pass egImageAddrs by component communication-->
+            <!--使用组件通信给egImageAddrs赋值-->
+            <upload-image :egImageAddrs="egImageSEIAddrs"></upload-image>
+        </div>
         <div class="saliency-edge-inpaint-use-case"></div>
     </div>
 </template>
 
 <script>
+import UploadImage from "@/components/upload-can/UploadImage.vue";
 export default{
     name: 'SaliencyEdgeInpaint',
+    components: {
+        UploadImage
+    },
+    data(){
+        return {
+            egImageSEIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png"]
+        }
+    },
     computed:{
         saliencyEdge(){
             // switch the content follow the value of 'language' attribute in i18n.
@@ -99,7 +112,7 @@ export default{
         }
     }
     .saliency-edge-inpaint-upload-image{
-        background-color: blue;
+        background-color: rgb(176, 255, 225);
         flex: 2;
     }
     .saliency-edge-inpaint-use-case{
