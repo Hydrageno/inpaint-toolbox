@@ -25,7 +25,7 @@
         <div class="tradition-inpaint-upload-image">
             <!--pass egImageAddrs by component communication-->
             <!--使用组件通信给egImageAddrs赋值-->
-            <upload-image :egImageAddrs="egImageTIAddrs"></upload-image>
+            <upload-image :egImageAddrs="egImageTIAddrs" :viewType="viewType"></upload-image>
         </div>
         <div class="tradition-inpaint-use-case">
             <div class="tradition-inpaint-use-case-content">
@@ -56,7 +56,8 @@ export default{
             egImageTIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
             "https://i.328888.xyz/2023/03/15/J5vEN.png",
             "https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png"]
+            "https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            viewType: "TI"
         }
     },
     computed:{

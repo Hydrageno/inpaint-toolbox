@@ -10,7 +10,7 @@
         <!--container for canvas-->
         <!--画布的容器-->
         <div class="tradition-inpaint-view-content" ref="traditionInpaintViewContent">
-            <canvas class="tradition-inpaint-view-canvas" ref="inpaintCanvas"></canvas>
+            <canvas class="tradition-inpaint-view-canvas" ref="traditionInpaintCanvas"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
@@ -38,12 +38,12 @@
                 </el-select>
             </div>     
             <div class="submit-painted">
-                <el-button size="mini">
+                <el-button size="small">
                     <h2>{{ submit }}</h2>
                 </el-button>
             </div>
             <div class="download-result">
-                <el-button size="mini">
+                <el-button size="small">
                     <h2>{{ download }}</h2>
                 </el-button>
             </div>
@@ -133,17 +133,17 @@ export default{
         }
     },
     mounted(){
-    this.$refs.inpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
-    this.$refs.inpaintCanvas.height = store.state.imageHeight;
-    this.$refs.inpaintCanvas.width = store.state.imageWidth;
+    this.$refs.traditionInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+    this.$refs.traditionInpaintCanvas.height = store.state.imageHeight;
+    this.$refs.traditionInpaintCanvas.width = store.state.imageWidth;
 
     // add wheel zoom event
-    const inpaintViewContent = this.$refs.inpaintViewContent;
-    inpaintViewContent.addEventListener('wheel', this.handleZoom);
+    // const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
+    // traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
 
     // draw the background for canvas
-    const inpaintCanvas = this.$refs.inpaintCanvas;
-    const ctx = inpaintCanvas.getContext('2d');
+    const traditionInpaintCanvas = this.$refs.traditionInpaintCanvas;
+    const ctx = traditionInpaintCanvas.getContext('2d');
 
     // set context to content of picture
     this.context = ctx;

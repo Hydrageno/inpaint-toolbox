@@ -60,13 +60,12 @@ export default{
     },
     data(){
         return {
-            viewType: "",
             correctUpload: false,
         }
     },
     // recieve image address from parent.
     // 使用组件间的通信接收图片地址。
-    props:['egImageAddrs'],
+    props:['egImageAddrs', 'viewType'],
     methods:{
         beforeUploadImage(file){
             // type check.
