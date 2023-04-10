@@ -32,11 +32,11 @@
             {{ removalInpaintNavigatorMessage }}
           </span>
         </div>
-        <div id="navigator-main-segmentation-inpaint">
+        <div id="navigator-main-saliency-edge-inpaint">
           <el-icon>
             <Grid :size="iconSize"></Grid>
           </el-icon>
-          <span class="navigator-text" @click="goAnchor('body-segmentation-inpaint')">
+          <span class="navigator-text" @click="goAnchor('body-saliency-edge-inpaint')">
             {{ segmentationInpaintNavigatorMessage }}
           </span>
         </div>
@@ -53,7 +53,7 @@
       <tradition-inpaint id="body-tradition-inpaint"></tradition-inpaint>
       <super-resolution id="body-super-resolution"></super-resolution>
       <removal-inpaint id="body-removal-inpaint"></removal-inpaint>
-      <segmentation-inpaint id="body-segmentation-inpaint"></segmentation-inpaint>
+      <saliency-edge-inpaint id="body-saliency-edge-inpaint"></saliency-edge-inpaint>
     </div>
     <div id="footer">
       <!--thankful for sponsor.-->
@@ -73,7 +73,7 @@
 import TraditionInpaint from '@/components/homeview-can/TraditionInpaint.vue';
 import SuperResolution from '@/components/homeview-can/SuperResolution.vue';
 import RemovalInpaint from '@/components/homeview-can/RemovalInpaint.vue';
-import SegmentationInpaint from '@/components/homeview-can/SegmentationInpaint.vue';
+import SaliencyEdgeInpaint from '@/components/homeview-can/SaliencyEdgeInpaint.vue';
 import { View, ZoomIn, DeleteFilled, Grid } from '@element-plus/icons-vue'
 
 export default {
@@ -82,7 +82,7 @@ export default {
     TraditionInpaint,
     SuperResolution,
     RemovalInpaint,
-    SegmentationInpaint,
+    SaliencyEdgeInpaint,
     View,
     ZoomIn,
     DeleteFilled,
@@ -242,7 +242,7 @@ export default {
           user-select: none;
         }
       }
-      #navigator-main-segmentation-inpaint{
+      #navigator-main-saliency-edge-inpaint{
         flex: @function-width;
         cursor: pointer;
         //background-color: yellow;
@@ -256,7 +256,7 @@ export default {
           user-select: none;
         }
       }
-      #navigator-main-traidtion-inpaint:hover,#navigator-main-super-resolution:hover, #navigator-main-removal-inpaint:hover, #navigator-main-segmentation-inpaint:hover{
+      #navigator-main-traidtion-inpaint:hover,#navigator-main-super-resolution:hover, #navigator-main-removal-inpaint:hover, #navigator-main-saliency-edge-inpaint:hover{
         // set the style when hover the #navigator-main-traidtion-inpaint
         // 当用户悬浮鼠标在文字上时候，改变文字颜色。
         color: black;
@@ -304,7 +304,7 @@ export default {
       flex: @function-height;
       //background-color: yellow;
     }
-    #body-segmentation-inpaint{
+    #body-saliency-edge-inpaint{
       flex: @function-height;
       background-color: red;
     }

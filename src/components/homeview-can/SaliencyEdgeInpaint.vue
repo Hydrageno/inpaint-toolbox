@@ -1,10 +1,10 @@
 <template>
-    <div class="segmentation-inpaint"></div>
+    <div class="saliency-edge-inpaint"></div>
 </template>
 
 <script>
 export default{
-    name: 'SegmentationInpaint',
+    name: 'SaliencyEdgeInpaint',
 }
 </script>
 
