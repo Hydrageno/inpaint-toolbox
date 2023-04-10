@@ -123,8 +123,8 @@ export default {
   },
   computed:{
     traditionInpaintNavigatorMessage(){
-      // switch the content follow the value of 'language' attribute in i18n
-      // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容
+      // switch the content follow the value of 'language' attribute in i18n.
+      // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容。
       return this.$t('homeview.navigatorText.traditionInpaintNavigatorText');
     },
     superResolutionNavigatorMessage(){
