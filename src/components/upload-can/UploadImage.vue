@@ -179,10 +179,13 @@ export default{
         position: relative;
         height: 100%;
         width: 45%;
+        @top-distance: 3%;
         .upload-image-guide{
             // let the icon more dimensional.
             // 让图标相比其它内容更高维。
-            top: 0;
+            // the same top distance with el-upload
+            // 和el-upload一样的上边距
+            top: @top-distance;
             left: 0;
             position: absolute;
             z-index: 1;
@@ -202,7 +205,11 @@ export default{
         // 设置el-upload和el-upload-dragger的样式。
         .upload-image-guide+div{
             //background-color:black;
-            height:98%;
+            // don't so close!
+            // 让el-upload的上边距不要太小
+            position: relative;
+            top: @top-distance;
+            height:97%;
             .el-upload{
                 height: 100%;
                 .el-upload-dragger{
