@@ -116,7 +116,6 @@ export default {
       // if current lan is 1, means that current lan is zh, change to en.
       // 如果lan为1说明当前页面为中文，需要切换到英文。
       let newLan = (this.lan == 1) ? 'en' : 'zh';
-      
       this.$i18n.locale = newLan;
       console.log(this.$i18n.locale);
     }
@@ -298,7 +297,7 @@ export default {
     }
     #body-super-resolution{
       flex: @function-height;
-      background-color: purple;
+      //background-color: purple;
     }
     #body-removal-inpaint{
       flex: @function-height;
