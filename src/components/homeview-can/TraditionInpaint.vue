@@ -93,7 +93,7 @@ export default{
 <style lang="less">
 .tradition-inpaint{
     // let inner element flow by column.
-    // 让内部元素按照竖向排序
+    // 让内部元素按照竖向排序。
     display: flex;
     flex-direction: column;
     // height = desciption-height + upload-iamge-height + use-case-height
