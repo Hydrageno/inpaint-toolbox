@@ -59,7 +59,7 @@
       <!--thankful for sponsor.-->
       <!--使用的开源代码，诚挚感谢使用的开源项目开发者！-->
       <div id="thankful">
-        <el-link href="" type="info">&nbsp;&nbsp;&nbsp;&nbsp;Code Base on</el-link>
+        <el-link href="" type="info" :underline="false" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Code Base on</el-link>
         <el-link href="https://github.com/lyndonzheng/TFill" type="info">TFill</el-link>,
         <el-link href="https://github.com/xinntao/Real-ESRGAN" type="info">Real-ESRGAN</el-link>,
         <el-link href="https://github.com/plemeri/InSPyReNet" type="info">InSPyReNet</el-link>
@@ -327,6 +327,7 @@ export default {
       font-size: 4vh;
       color: rgb(255, 255, 255);
       user-select: none;
+      border-radius: 20px;
       border-width: 2px;
       border-color: rgb(190, 189, 189);
       border-style: double;
