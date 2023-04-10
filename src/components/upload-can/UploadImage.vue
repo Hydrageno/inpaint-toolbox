@@ -60,6 +60,7 @@ export default{
     },
     data(){
         return {
+            viewType: "",
             correctUpload: false,
         }
     },
@@ -93,7 +94,7 @@ export default{
             // create synchronous request.
             // 创建一个同步请求对象。
             let xhr = new XMLHttpRequest();
-            //let replacer = this;
+            let replacer = this;
             // post the url.
             // 使用POST来连接。
             xhr.open('POST', 'http://127.0.0.1:5000/upload');
@@ -131,7 +132,7 @@ export default{
                                     console.log(store.state.imageURL);
                                     // jump to certain page.
                                     // 跳转到对应的页面。
-                                    //replacer.jumpCertainPage();  
+                                    replacer.jumpCertainPage();  
                                 }
                             }   
                             xhr.send();
@@ -141,6 +142,10 @@ export default{
                 }
             }
             xhr.send(formData);
+        },
+        jumpCertainPage(){
+            if(this.viewType == "TI")
+                this.$router.push({path: "/tradition-inpaint"});
         }
     },
     computed:{
