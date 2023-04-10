@@ -144,6 +144,7 @@ export default {
 *{
   padding: 0;
   margin: 0;
+  user-select: none;
 }
 .home{
   height: 5200px;
