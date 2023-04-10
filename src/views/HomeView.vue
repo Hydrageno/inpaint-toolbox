@@ -306,7 +306,7 @@ export default {
     }
     #body-saliency-edge-inpaint{
       flex: @function-height;
-      background-color: red;
+      //background-color: red;
     }
   }
   #footer{
