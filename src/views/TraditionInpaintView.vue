@@ -39,12 +39,12 @@
                 </el-select>
             </div>     
             <div class="submit-painted">
-                <el-button size="small">
+                <el-button size="small" @click="submitPainted">
                     <h2>{{ submit }}</h2>
                 </el-button>
             </div>
             <div class="download-result">
-                <el-button size="small">
+                <el-button size="small" @click="downloadResult">
                     <h2>{{ download }}</h2>
                 </el-button>
             </div>
@@ -71,7 +71,14 @@ export default{
             // 决定是否绘图
             drawing: false,
             lineWidth: 0,
+            // control whether erase or not
+            // 决定是否擦除模式
             eraseOn: false,
+            lastX: 0,
+            lastY: 0,
+            scale: 1,
+            translateX: 0,
+            translateY: 0,
             modeValue: ref(''),
         }
     },
@@ -82,18 +89,25 @@ export default{
             this.$router.push({path: '/'});
         },
         handleZoom(event){
-            // get the current zoom level of the content
-            // 获得当前内容的缩放程度
-            let zoom = parseInt(this.$refs.traditionInpaintViewContent.style.zoom || "100");
-            // calculate the new zoom level based on the direction and amount of scrolling
-            zoom += event.deltaY > 0 ? -10 : 10;
-            // limit the zoom level to a range of 10% to 150%
-            // 设置缩放比例最低10，最高150
-            zoom = Math.min(Math.max(zoom, 10), 150);
-            // set the new zoom level
-            // 设置新的缩放程度
-            this.$refs.traditionInpaintViewContent.style.zoom = zoom + "%";
-        },  
+            const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
+            // set zoom factor
+            // 设置缩放因子
+            const scaleDelta = event.deltaY > 0 ? 0.9 : 1.1; 
+            const { clientX, clientY } = event;
+            const boundingRect = traditionInpaintViewContent.getBoundingClientRect();
+            const x = clientX - boundingRect.left;
+            const y = clientY - boundingRect.top;
+            // update scale value
+            // 更新缩放因子
+            this.scale *= scaleDelta; 
+            // update x-axis translation value
+            // 更新translateX值
+            this.translateX = (1 - scaleDelta) * x + this.translateX; 
+            // update y-axis translation value
+            // 更新translateY值
+            this.translateY = (1 - scaleDelta) * y + this.translateY; 
+            traditionInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
+        },
         startDrawing(event){
             if(this.eraseOn){
                 // eraser mode 
