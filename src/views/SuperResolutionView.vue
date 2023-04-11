@@ -103,55 +103,7 @@ export default{
             this.translateY = (1 - scaleDelta) * y + this.translateY; 
             traditionInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
         },
-        submitPainted(){
-            // first, save the canvas.
-            // 保存画布上的图像信息。
-            let imageData = this.$refs.traditionInpaintCanvas.toDataURL({format: 'png', quality: 1, width: store.state.imageWidth, height: store.state.imageHeight});
-            // convert img data to blob type for transfer.
-            // 将图像信息转换为2进制方便传输。
-            let blob = this.dataURLtoBlob(imageData)
-            let href = URL.createObjectURL(blob);
-            // in fecth the value of 'this' changed.
-            // 由于在内部的this指向并非Vue故需要找个替身。
-            let replacer = this; 
-            // prevent user from clicking any button.
-            // 阻止用户点击任何按钮。
-            replacer.submitLocked = true;
-            replacer.downloadLocked = true;
-            fetch(href)
-                .then(response => response.blob())
-                .then(blob => {
-                    const formData = new FormData();
-                    // add picture flow.
-                    // 添加图像流。
-                    formData.append('image', blob, 'upload.jpg');
-                    // add inpaint type.
-                    // 添加修复类型。
-                    formData.append('inpaint-type', replacer.modeValue);
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'http://127.0.0.1:5000/upload-painted');
-                    xhr.onload = function(){
-                    if(xhr.status === 200 && xhr.readyState === 4){
-                        console.log(xhr.response);
-                        // allow user for submit and download.
-                        // 允许用户再次提交，或者下载结果。
-                        replacer.submitLocked = false;
-                        replacer.downloadLocked = false;
-                    }
-                }
-            xhr.send(formData)
-            })
-        },
-        dataURLtoBlob: function(dataurl) {
-            // this method aims to convert data to blob.
-            // 该方法旨在将数据转换为blob类型
-            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-            while(n--){
-                u8arr[n] = bstr.charCodeAt(n);
-            }
-            return new Blob([u8arr], {type:mime});
-        },
+
         downloadResult:function(){
             let xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://127.0.0.1:5000/download-inpaint');
