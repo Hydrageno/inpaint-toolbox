@@ -189,6 +189,31 @@ export default{
             }
             return new Blob([u8arr], {type:mime});
         },
+        downloadResult:function(){
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://127.0.0.1:5000/download-inpaint');
+            // set response type.
+            // 设定返回类型。
+            xhr.responseType = 'blob'
+            xhr.onload = function(){
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    console.log("download-inpaint connection build");
+                    let response = xhr.response;
+                    let blob = response;
+                    let inpaintImageURL = URL.createObjectURL(blob);
+                    // create a tag & download it.
+                    // 创造a节点并且下载。
+                    const a = document.createElement('a');
+                    a.href = inpaintImageURL;
+                    a.style.display = 'none';
+                    a.download = 'inpaintedImage.png'
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            }
+            xhr.send();
+        },
     },
     computed:{
         backHome(){
