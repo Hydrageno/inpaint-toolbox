@@ -414,6 +414,9 @@ h3{
             // 让内部元素水平居中。
             display: flex;
             justify-content: center;
+            .el-button{
+                background-color: rgb(244,245,247);
+            }
         }
         .download-result{
             //background-color: pink;
@@ -422,6 +425,9 @@ h3{
             // 让内部元素水平居中。
             display: flex;
             justify-content: center;
+            .el-button{
+                background-color: rgb(244,245,247);
+            }
         }
     }
 }
