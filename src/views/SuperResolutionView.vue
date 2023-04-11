@@ -14,8 +14,21 @@
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
-        <div class="super-resolution-view-toolbar">    
-            <div class="request-super-resolution">
+        <div class="super-resolution-view-toolbar"> 
+            <div class="super-resolution-scale-container">
+                <el-radio-group v-model="superResolutionScale">
+                    <el-radio :label="2">X2</el-radio>
+                    <el-radio :label="3">X3</el-radio>
+                    <el-radio :label="4">X4</el-radio>
+                </el-radio-group>
+            </div>
+            <div class="super-resolution-type-container">
+                <el-radio-group v-model="superResolutionType">
+                    <el-radio :label="1">{{ realWorld }}</el-radio>
+                    <el-radio :label="2">{{ animation }}</el-radio>
+                </el-radio-group>
+            </div>   
+            <div class="request-super-resolution-container">
                 <el-button size="small" @click="requestSuperResolution" :disabled="submitLocked">
                     <h2>{{ submit }}</h2>
                 </el-button>
@@ -30,6 +43,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import store from '@/store'
 //import 'default-passive-events'
 
@@ -45,8 +59,8 @@ export default{
             scale: 1,
             translateX: 0,
             translateY: 0,
-            superResolutionScale: 2,
-            superResolutionType: 1,
+            superResolutionScale: ref(2),
+            superResolutionType: ref(1),
             // aims to prevent user from clicking the button.
             // 在服务器处理数据期间阻止用户点击按钮。
             submitLocked: false,
@@ -134,6 +148,12 @@ export default{
             // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容。
             return this.$t('superResolutionView.navigatorText.backHome')
         },
+        realWorld(){
+            return this.$t('superResolutionView.toolBar.realWorld')
+        },
+        animation(){
+            return this.$t('superResolutionView.toolBar.animation')
+        },
         submit(){
             return this.$t('superResolutionView.toolBar.submit')
         },
@@ -203,7 +223,7 @@ h3{
     }
     .super-resolution-view-toolbar{
         height: 2.0em;
-        width: 52rem;
+        width: 35rem;
         position: fixed;
         overflow: hidden;
         // the distance between toolbar and bottom.
@@ -226,6 +246,20 @@ h3{
         // 让内部元素垂直居中。
         display: flex;
         align-items: center;
+        .super-resolution-scale-container{
+            flex: 2;
+            // make inner element center horizontal.
+            // 让内部元素水平居中。
+            display: flex;
+            justify-content: center;
+        }
+        .super-resolution-type-container{
+            flex: 2;
+            // make inner element center horizontal.
+            // 让内部元素水平居中。
+            display: flex;
+            justify-content: center;
+        }
         .request-super-resolution{
             //background-color: yellow;
             flex: 0.85;

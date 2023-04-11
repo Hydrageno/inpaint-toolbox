@@ -84,6 +84,8 @@ export default {
                 backHome: "返回主页"
             },
             toolBar:{
+                realWorld: "现实",
+                animation: "动漫",
                 submit: "提交",
                 download: "下载"
             }

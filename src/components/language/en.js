@@ -84,6 +84,8 @@ export default {
                 backHome: "Back Home"
             },
             toolBar:{
+                realWorld: "Real World",
+                animation: "Animation",
                 submit: "SUBMIT",
                 download: "DOWNLOAD"
             }
