@@ -48,6 +48,11 @@
                     <h2>{{ request }}</h2>
                 </el-button>
             </div>
+            <div class="request-saliency-object">
+                <el-button size="small" @click="requestSaliencyObject" :disabled="requestLocked">
+                    <h2>{{ downloadSO }}</h2>
+                </el-button>
+            </div>
             <div class="download-result">
                 <el-button size="small" @click="downloadResult" :disabled="downloadLocked">
                     <h2>{{ download }}</h2>
@@ -226,6 +231,28 @@ export default{
             }
             xhr.send();
         },
+        requestSaliencyObject:function(){
+            let xhr = new XMLHttpRequest();
+            //let replacer = this;
+            xhr.open('POST', 'http://127.0.0.1:5000/download-guide');
+            xhr.responseType = 'blob'
+            xhr.onload = function(){
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    console.log("download-inpaint connection build");
+                    let response = xhr.response;
+                    let blob = response;
+                    let inpaintImageURL = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = inpaintImageURL;
+                    a.style.display = 'none';
+                    a.download = 'saliencyObject.png'
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            }
+            xhr.send();
+        },
         downloadResult:function(){
             let xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://127.0.0.1:5000/download-inpaint');
@@ -289,6 +316,9 @@ export default{
         },
         request(){
             return this.$t('saliencyEdgeInpaintView.toolBar.request')
+        },
+        downloadSO(){
+            return this.$t('saliencyEdgeInpaintView.toolBar.downloadSO')
         },
         download(){
             return this.$t('saliencyEdgeInpaintView.toolBar.download')
@@ -372,7 +402,7 @@ h3{
     }
     .saliency-edge-inpaint-view-toolbar{
         height: 2.0em;
-        width: 60rem;
+        width: 70rem;
         position: fixed;
         overflow: hidden;
         // the distance between toolbar and bottom.
@@ -431,7 +461,7 @@ h3{
         }
         .submit-painted{
             //background-color: yellow;
-            flex: 0.85;
+            flex: 0.75;
             // make inner element center horizontal.
             // 让内部元素水平居中。
             display: flex;
@@ -450,9 +480,19 @@ h3{
                 background-color: rgb(244,245,247);
             }
         }
+        .request-saliency-object{
+            flex: 1;
+            // make inner element center horizontal.
+            // 让内部元素水平居中。
+            display: flex;
+            justify-content: center;
+            .el-button{
+                background-color: rgb(244,245,247);
+            }           
+        }
         .download-result{
             //background-color: pink;
-            flex: 1;
+            flex: 0.65;
             // make inner element center horizontal.
             // 让内部元素水平居中。
             display: flex;
