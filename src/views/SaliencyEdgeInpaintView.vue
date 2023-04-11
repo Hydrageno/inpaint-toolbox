@@ -1,21 +1,21 @@
 <template>
-    <div class="tradition-inpaint-view">
+    <div class="saliency-edge-inpaint-view">
         <!--navigator for current view-->
         <!--当前页面的导航栏-->
-        <div class="tradition-inpaint-view-navigator">
+        <div class="saliency-edge-inpaint-view-navigator">
             <div class="back-main" @click="backMain">
                 <h1>←{{ backHome }}</h1>
             </div>
         </div>
         <!--container for canvas-->
         <!--画布的容器-->
-        <div class="tradition-inpaint-view-content" ref="traditionInpaintViewContent">
-            <canvas class="tradition-inpaint-view-canvas" ref="traditionInpaintCanvas"
+        <div class="saliency-edge-inpaint-view-content" ref="saliencyEdgeInpaintViewContent">
+            <canvas class="saliency-edge-inpaint-view-canvas" ref="saliencyEdgeInpaintCanvas"
                 @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
-        <div class="tradition-inpaint-view-toolbar">
+        <div class="saliency-edge-inpaint-view-toolbar">
             <div class="custom-thickness">
                 <!--Pen for canvas-->
                 <!--画布的笔-->
@@ -59,7 +59,7 @@ import store from '@/store'
 //import 'default-passive-events'
 
 export default{
-    name: 'TraditionInpaintView',
+    name: 'SaliencyEdgeInpaintView',
     components:{
         EditPen,
     },
@@ -93,12 +93,12 @@ export default{
             this.$router.push({path: '/'});
         },
         handleZoom(event){
-            const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
+            const saliencyEdgeInpaintViewContent = this.$refs.saliencyEdgeInpaintViewContent;
             // set zoom factor
             // 设置缩放因子
             const scaleDelta = event.deltaY > 0 ? 0.9 : 1.1; 
             const { clientX, clientY } = event;
-            const boundingRect = traditionInpaintViewContent.getBoundingClientRect();
+            const boundingRect = saliencyEdgeInpaintViewContent.getBoundingClientRect();
             const x = clientX - boundingRect.left;
             const y = clientY - boundingRect.top;
             // update scale value
@@ -110,7 +110,7 @@ export default{
             // update y-axis translation value
             // 更新translateY值
             this.translateY = (1 - scaleDelta) * y + this.translateY; 
-            traditionInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
+            saliencyEdgeInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
         },
         startDrawing(event){
             if(this.eraseOn){
@@ -154,7 +154,7 @@ export default{
         submitPainted(){
             // first, save the canvas.
             // 保存画布上的图像信息。
-            let imageData = this.$refs.traditionInpaintCanvas.toDataURL({format: 'png', quality: 1, width: store.state.imageWidth, height: store.state.imageHeight});
+            let imageData = this.$refs.saliencyEdgeInpaintCanvas.toDataURL({format: 'png', quality: 1, width: store.state.imageWidth, height: store.state.imageHeight});
             // convert img data to blob type for transfer.
             // 将图像信息转换为2进制方便传输。
             let blob = this.dataURLtoBlob(imageData)
@@ -235,37 +235,34 @@ export default{
         backHome(){
             // switch the content follow the value of 'language' attribute in i18n.
             // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容。
-            return this.$t('traditionInpaintView.navigatorText.backHome')
+            return this.$t('saliencyEdgeInpaintView.navigatorText.backHome')
         },
         penThickness(){
-            return this.$t('traditionInpaintView.toolBar.penThickness')
+            return this.$t('saliencyEdgeInpaintView.toolBar.penThickness')
         },
         eraseText(){
-            return this.$t('traditionInpaintView.toolBar.eraseText')
+            return this.$t('saliencyEdgeInpaintView.toolBar.eraseText')
         },
         penText(){
-            return this.$t('traditionInpaintView.toolBar.penText')
+            return this.$t('saliencyEdgeInpaintView.toolBar.penText')
         },
         selectMode(){
-            return this.$t('traditionInpaintView.toolBar.selectMode')
+            return this.$t('saliencyEdgeInpaintView.toolBar.selectMode')
         },
         celehq(){
-            return this.$t('traditionInpaintView.toolBar.celehq')
+            return this.$t('saliencyEdgeInpaintView.toolBar.celehq')
         },
         places(){
-            return this.$t('traditionInpaintView.toolBar.places')
+            return this.$t('saliencyEdgeInpaintView.toolBar.places')
         },
         imageNet(){
-            return this.$t('traditionInpaintView.toolBar.imageNet')
-        },
-        animation(){
-            return this.$t('traditionInpaintView.toolBar.animation')
+            return this.$t('saliencyEdgeInpaintView.toolBar.imageNet')
         },
         submit(){
-            return this.$t('traditionInpaintView.toolBar.submit')
+            return this.$t('saliencyEdgeInpaintView.toolBar.submit')
         },
         download(){
-            return this.$t('traditionInpaintView.toolBar.download')
+            return this.$t('saliencyEdgeInpaintView.toolBar.download')
         },
         modeOptions(){
             return [
@@ -281,31 +278,27 @@ export default{
                     value: 3,
                     label: this.imageNet,
                 },
-                {
-                    value: 4,
-                    label: this.animation,
-                }
             ]
         }
     },
     mounted(){
         // set the background image.
         // 设置背景图片。
-        this.$refs.traditionInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+        this.$refs.saliencyEdgeInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
         // set height and width for canvas.
         // 为画布设置高度和宽度。
-        this.$refs.traditionInpaintCanvas.height = store.state.imageHeight;
-        this.$refs.traditionInpaintCanvas.width = store.state.imageWidth;
+        this.$refs.saliencyEdgeInpaintCanvas.height = store.state.imageHeight;
+        this.$refs.saliencyEdgeInpaintCanvas.width = store.state.imageWidth;
 
         // add wheel zoom event.
         // 添加鼠标滚轮缩放事件。
-        const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
-        traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
+        const saliencyEdgeInpaintViewContent = this.$refs.saliencyEdgeInpaintViewContent;
+        saliencyEdgeInpaintViewContent.addEventListener('wheel', this.handleZoom);
 
         // draw the background for canvas.
         // 为画布画图。
-        const traditionInpaintCanvas = this.$refs.traditionInpaintCanvas;
-        const ctx = traditionInpaintCanvas.getContext('2d');
+        const saliencyEdgeInpaintCanvas = this.$refs.saliencyEdgeInpaintCanvas;
+        const ctx = saliencyEdgeInpaintCanvas.getContext('2d');
 
         // set style of line.
         // 设置线条之间的样式。
@@ -323,9 +316,9 @@ export default{
 h3{
     display: inline;
 }
-.tradition-inpaint-view{
+.saliency-edge-inpaint-view{
     height: 100vh;
-    .tradition-inpaint-view-navigator{
+    .saliency-edge-inpaint-view-navigator{
         // make the navigator fix to its location.
         // 让导航栏与网页保持相对距离
         position: fixed;
@@ -343,12 +336,12 @@ h3{
             justify-content: center;
         }
     }
-    .tradition-inpaint-view-content{
+    .saliency-edge-inpaint-view-content{
         transform-origin: left top;
         margin: 0 auto;
         width: fit-content;
     }
-    .tradition-inpaint-view-toolbar{
+    .saliency-edge-inpaint-view-toolbar{
         height: 2.0em;
         width: 52rem;
         position: fixed;
