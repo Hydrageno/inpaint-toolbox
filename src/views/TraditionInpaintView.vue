@@ -55,6 +55,8 @@
 import { EditPen } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import store from '@/store'
+//import 'default-passive-events'
+
 export default{
     name: 'TraditionInpaintView',
     components:{
@@ -70,10 +72,23 @@ export default{
     },
     methods:{
         backMain:function(){
-            // return home
-            // 返回主页面
+            // return home.
+            // 返回主页面。
             this.$router.push({path: '/'});
         },
+        handleZoom(event){
+            // get the current zoom level of the content
+            // 获得当前内容的缩放程度
+            let zoom = parseInt(this.$refs.traditionInpaintViewContent.style.zoom || "100");
+            // calculate the new zoom level based on the direction and amount of scrolling
+            zoom += event.deltaY > 0 ? -10 : 10;
+            // limit the zoom level to a range of 10% to 150%
+            // 设置缩放比例最低10，最高150
+            zoom = Math.min(Math.max(zoom, 10), 150);
+            // set the new zoom level
+            // 设置新的缩放程度
+            this.$refs.traditionInpaintViewContent.style.zoom = zoom + "%";
+        },        
     },
     computed:{
         backHome(){
@@ -133,19 +148,26 @@ export default{
         }
     },
     mounted(){
+    // set the background image.
+    // 设置背景图片。
     this.$refs.traditionInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+    // set height and width for canvas.
+    // 为画布设置高度和宽度。
     this.$refs.traditionInpaintCanvas.height = store.state.imageHeight;
     this.$refs.traditionInpaintCanvas.width = store.state.imageWidth;
 
-    // add wheel zoom event
-    // const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
-    // traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
+    // add wheel zoom event.
+    // 添加鼠标滚轮缩放事件。
+    const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
+    traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
 
-    // draw the background for canvas
+    // draw the background for canvas.
+    // 为画布画图。
     const traditionInpaintCanvas = this.$refs.traditionInpaintCanvas;
     const ctx = traditionInpaintCanvas.getContext('2d');
 
-    // set context to content of picture
+    // set style of line.
+    // 设置线条之间的样式。
     this.context = ctx;
     this.context.lineJoin = 'round';
     this.context.lineCap = 'round';
