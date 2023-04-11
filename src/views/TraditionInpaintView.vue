@@ -39,12 +39,12 @@
                 </el-select>
             </div>     
             <div class="submit-painted">
-                <el-button size="small" @click="submitPainted">
+                <el-button size="small" @click="submitPainted" :disabled="submitLocked">
                     <h2>{{ submit }}</h2>
                 </el-button>
             </div>
             <div class="download-result">
-                <el-button size="small" @click="downloadResult">
+                <el-button size="small" @click="downloadResult" :disabled="downloadLocked">
                     <h2>{{ download }}</h2>
                 </el-button>
             </div>
@@ -67,12 +67,12 @@ export default{
         return {
             imageTIURL: store.state.imageURL,
             context: null,
-            // control whether paint or not
-            // 决定是否绘图
+            // control whether paint or not.
+            // 决定是否绘图。
             drawing: false,
             lineWidth: 0,
-            // control whether erase or not
-            // 决定是否擦除模式
+            // control whether erase or not.
+            // 决定是否擦除模式。
             eraseOn: false,
             lastX: 0,
             lastY: 0,
@@ -80,6 +80,10 @@ export default{
             translateX: 0,
             translateY: 0,
             modeValue: ref(''),
+            // aims to prevent user from clicking the button.
+            // 在服务器处理数据期间阻止用户点击按钮。
+            submitLocked: false,
+            downloadLocked: true,
         }
     },
     methods:{
@@ -158,22 +162,29 @@ export default{
             // in fecth the value of 'this' changed.
             // 由于在内部的this指向并非Vue故需要找个替身。
             let replacer = this; 
+            // prevent user from clicking any button.
+            // 阻止用户点击任何按钮。
+            replacer.submitLocked = true;
+            replacer.downloadLocked = true;
             fetch(href)
                 .then(response => response.blob())
                 .then(blob => {
                     const formData = new FormData();
-                    // add picture flow
-                    // 添加图像流
+                    // add picture flow.
+                    // 添加图像流。
                     formData.append('image', blob, 'upload.jpg');
-                    // add inpaint type
-                    // 添加修复类型
+                    // add inpaint type.
+                    // 添加修复类型。
                     formData.append('inpaint-type', replacer.modeValue);
                     let xhr = new XMLHttpRequest();
                     xhr.open('POST', 'http://127.0.0.1:5000/upload-painted');
                     xhr.onload = function(){
                     if(xhr.status === 200 && xhr.readyState === 4){
                         console.log(xhr.response);
-                        replacer.painted = true;
+                        // allow user for submit and download.
+                        // 允许用户再次提交，或者下载结果。
+                        replacer.submitLocked = false;
+                        replacer.downloadLocked = false;
                     }
                 }
             xhr.send(formData)
@@ -195,6 +206,9 @@ export default{
             // set response type.
             // 设定返回类型。
             xhr.responseType = 'blob'
+            let replacer = this;
+            replacer.submitLocked = true;
+            replacer.downloadLocked = true;
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
                     console.log("download-inpaint connection build");
@@ -210,6 +224,8 @@ export default{
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
+                    replacer.submitLocked = false;
+                    replacer.downloadLocked = false;
                 }
             }
             xhr.send();
