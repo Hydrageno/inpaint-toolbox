@@ -10,21 +10,14 @@
         <!--container for canvas-->
         <!--画布的容器-->
         <div class="super-resolution-view-content" ref="superResolutionViewContent">
-            <canvas class="super-resolution-view-canvas" ref="superResolutionInpaintCanvas"
+            <canvas class="super-resolution-view-canvas" ref="superResolutionViewCanvas"
                 @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
-        <div class="super-resolution-view-toolbar">
-            <div class="mode-select">
-                <!--INPAINT MODE SELECTOR-->
-                <!--修复模式选择器-->
-                <el-select v-model="modeValue" :placeholder="selectMode">
-                    <el-option v-for="mode in modeOptions" :key="mode.value" :label="mode.label" :value="mode.value"></el-option>
-                </el-select>
-            </div>     
-            <div class="submit-painted">
-                <el-button size="small" @click="submitPainted" :disabled="submitLocked">
+        <div class="super-resolution-view-toolbar">    
+            <div class="request-super-resolution">
+                <el-button size="small" @click="requestSuperResolution" :disabled="submitLocked">
                     <h2>{{ submit }}</h2>
                 </el-button>
             </div>
@@ -49,7 +42,7 @@ export default{
     },
     data(){
         return {
-            imageTIURL: store.state.imageURL,
+            imageSRURL: store.state.imageURL,
             context: null,
             scale: 1,
             translateX: 0,
@@ -90,7 +83,7 @@ export default{
 
         downloadResult:function(){
             let xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://127.0.0.1:5000/download-inpaint');
+            xhr.open('POST', 'http://127.0.0.1:5000/download-sr');
             // set response type.
             // 设定返回类型。
             xhr.responseType = 'blob'
@@ -99,7 +92,7 @@ export default{
             replacer.downloadLocked = true;
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
-                    console.log("download-inpaint connection build");
+                    console.log("download-sr connection build");
                     let response = xhr.response;
                     let blob = response;
                     let inpaintImageURL = URL.createObjectURL(blob);
@@ -108,7 +101,7 @@ export default{
                     const a = document.createElement('a');
                     a.href = inpaintImageURL;
                     a.style.display = 'none';
-                    a.download = 'inpaintedImage.png'
+                    a.download = 'superResolved.png'
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -125,65 +118,21 @@ export default{
             // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容。
             return this.$t('superResolutionView.navigatorText.backHome')
         },
-        penThickness(){
-            return this.$t('superResolutionView.toolBar.penThickness')
-        },
-        eraseText(){
-            return this.$t('superResolutionView.toolBar.eraseText')
-        },
-        penText(){
-            return this.$t('superResolutionView.toolBar.penText')
-        },
-        selectMode(){
-            return this.$t('superResolutionView.toolBar.selectMode')
-        },
-        celehq(){
-            return this.$t('superResolutionView.toolBar.celehq')
-        },
-        places(){
-            return this.$t('superResolutionView.toolBar.places')
-        },
-        imageNet(){
-            return this.$t('superResolutionView.toolBar.imageNet')
-        },
-        animation(){
-            return this.$t('superResolutionView.toolBar.animation')
-        },
         submit(){
             return this.$t('superResolutionView.toolBar.submit')
         },
         download(){
             return this.$t('superResolutionView.toolBar.download')
         },
-        modeOptions(){
-            return [
-                {
-                    value: 1,
-                    label: this.celehq,
-                },
-                {
-                    value: 2,
-                    label: this.places,
-                },
-                {
-                    value: 3,
-                    label: this.imageNet,
-                },
-                {
-                    value: 4,
-                    label: this.animation,
-                }
-            ]
-        }
     },
     mounted(){
         // set the background image.
         // 设置背景图片。
-        this.$refs.superResolutionViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+        this.$refs.superResolutionViewContent.style.backgroundImage = `url(${this.imageSRURL})`
         // set height and width for canvas.
         // 为画布设置高度和宽度。
-        this.$refs.superResolutionCanvas.height = store.state.imageHeight;
-        this.$refs.superResolutionCanvas.width = store.state.imageWidth;
+        this.$refs.superResolutionViewCanvas.height = store.state.imageHeight;
+        this.$refs.superResolutionViewCanvas.width = store.state.imageWidth;
 
         // add wheel zoom event.
         // 添加鼠标滚轮缩放事件。
@@ -192,8 +141,8 @@ export default{
 
         // draw the background for canvas.
         // 为画布画图。
-        const superResolutionCanvas = this.$refs.superResolutionCanvas;
-        const ctx = superResolutionCanvas.getContext('2d');
+        const superResolutionViewCanvas = this.$refs.superResolutionViewCanvas;
+        const ctx = superResolutionViewCanvas.getContext('2d');
 
         // set style of line.
         // 设置线条之间的样式。
@@ -261,16 +210,7 @@ h3{
         // 让内部元素垂直居中。
         display: flex;
         align-items: center;
-        .mode-select{
-            //background-color: black;
-            flex: 2;
-            // make inner element center horizontal.
-            // 让内部元素水平居中。
-            display: flex;
-            justify-content: center;
-
-        }
-        .submit-painted{
+        .request-super-resolution{
             //background-color: yellow;
             flex: 0.85;
             // make inner element center horizontal.
