@@ -43,6 +43,11 @@
                     <h2>{{ submit }}</h2>
                 </el-button>
             </div>
+            <div class="request-saliency-edge">
+                <el-button size="small" @click="requestSaliencyEdge" :disabled="requestLocked">
+                    <h2>{{ request }}</h2>
+                </el-button>
+            </div>
             <div class="download-result">
                 <el-button size="small" @click="downloadResult" :disabled="downloadLocked">
                     <h2>{{ download }}</h2>
@@ -200,6 +205,27 @@ export default{
             }
             return new Blob([u8arr], {type:mime});
         },
+        requestSaliencyEdge:function(){
+            // before request guide
+            let replacer = this;
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://127.0.0.1:5000/request-guide');
+            xhr.responseType = 'blob'
+            xhr.onload = function(){
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    console.log("request guide connection build");
+                    let response = xhr.response;
+                    let blob = response;
+                    let guidedImageURL = URL.createObjectURL(blob);
+                    const img = new Image();
+                    img.src = guidedImageURL;
+                    img.onload = function(){
+                       replacer.context.drawImage(img, 0, 0);
+                    }
+                }
+            }
+            xhr.send();
+        },
         downloadResult:function(){
             let xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://127.0.0.1:5000/download-inpaint');
@@ -260,6 +286,9 @@ export default{
         },
         submit(){
             return this.$t('saliencyEdgeInpaintView.toolBar.submit')
+        },
+        request(){
+            return this.$t('saliencyEdgeInpaintView.toolBar.request')
         },
         download(){
             return this.$t('saliencyEdgeInpaintView.toolBar.download')
@@ -343,7 +372,7 @@ h3{
     }
     .saliency-edge-inpaint-view-toolbar{
         height: 2.0em;
-        width: 52rem;
+        width: 60rem;
         position: fixed;
         overflow: hidden;
         // the distance between toolbar and bottom.
@@ -393,7 +422,7 @@ h3{
         }
         .mode-select{
             //background-color: black;
-            flex: 2;
+            flex: 1;
             // make inner element center horizontal.
             // 让内部元素水平居中。
             display: flex;
@@ -403,6 +432,16 @@ h3{
         .submit-painted{
             //background-color: yellow;
             flex: 0.85;
+            // make inner element center horizontal.
+            // 让内部元素水平居中。
+            display: flex;
+            justify-content: center;
+            .el-button{
+                background-color: rgb(244,245,247);
+            }
+        }
+        .request-saliency-edge{
+            flex: 1;
             // make inner element center horizontal.
             // 让内部元素水平居中。
             display: flex;
