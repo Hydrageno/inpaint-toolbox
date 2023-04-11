@@ -89,6 +89,21 @@ export default {
                 submit: "提交",
                 download: "下载"
             }
-        }
+        },
+        removalInpaintView: {
+            navigatorText:{
+                backHome: "返回主页"
+            },
+            toolBar:{
+                penThickness: "调整笔粗细：",
+                eraseText: "橡皮擦模式",
+                penText: "绘画模式",
+                selectMode: "选择模式",
+                realWorld: "现实世界",
+                animation: "动漫人物",
+                submit: "提交",
+                download: "下载"
+            },
+        },
     }
 }

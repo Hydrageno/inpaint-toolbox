@@ -89,6 +89,21 @@ export default {
                 submit: "SUBMIT",
                 download: "DOWNLOAD"
             }
-        }
+        },
+        removalInpaintView: {
+            navigatorText:{
+                backHome: "Back Home"
+            },
+            toolBar:{
+                penThickness: "Pen Thickness:",
+                eraseText: "ERASE",
+                penText: "PAINT",
+                selectMode: "Select Mode",
+                realWorld: "Real World",
+                animation: "Animated Character",
+                submit: "SUBMIT",
+                download: "DOWNLOAD"
+            },
+        },
     }
 }
