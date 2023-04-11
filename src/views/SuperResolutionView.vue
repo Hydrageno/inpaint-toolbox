@@ -97,7 +97,8 @@ export default{
             // this methods doesn't need to submit canvas picture
             // 该方法无需上传画布图片
             let replacer = this;
-            this.superResolved = false;
+            replacer.submitLocked = true;
+            replacer.downloadLocked = true;
             let xhr = new XMLHttpRequest();
             const formData = new FormData();
             formData.append('sr-scale', replacer.superResolutionScale);
@@ -106,7 +107,8 @@ export default{
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
                     console.log(xhr.response);
-                    replacer.superResolved = true;
+                    replacer.submitLocked = false;
+                    replacer.downloadLocked = false;
                 }
             }
             xhr.send(formData);
