@@ -105,5 +105,23 @@ export default {
                 download: "下载"
             },
         },
+        saliencyEdgeInpaintView: {
+            navigatorText:{
+                backHome: "返回主页"
+            },
+            toolBar:{
+                penThickness: "调整笔粗细：",
+                eraseText: "橡皮擦模式",
+                penText: "绘画模式",
+                selectMode: "选择模式",
+                celehq: "人脸",
+                places: "背景",
+                imageNet: "其它",
+                request: "显著边缘检测",
+                downloadSO: "下载显著目标",
+                submit: "提交",
+                download: "下载"
+            },
+        },
     }
 }

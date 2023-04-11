@@ -105,5 +105,23 @@ export default {
                 download: "DOWNLOAD"
             },
         },
+        saliencyEdgeInpaintView: {
+            navigatorText:{
+                backHome: "Back Home"
+            },
+            toolBar:{
+                penThickness: "Pen Thickness:",
+                eraseText: "ERASE",
+                penText: "PAINT",
+                selectMode: "Select Mode",
+                celehq: "Human Face",
+                places: "Scenary",
+                imageNet: "Other",
+                request: "Req SE",
+                downloadSO: "DOWNLOAD SO",
+                submit: "SUBMIT",
+                download: "DOWNLOAD"
+            },
+        },
     }
 }
