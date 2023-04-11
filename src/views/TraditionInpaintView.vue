@@ -10,7 +10,8 @@
         <!--container for canvas-->
         <!--画布的容器-->
         <div class="tradition-inpaint-view-content" ref="traditionInpaintViewContent">
-            <canvas class="tradition-inpaint-view-canvas" ref="traditionInpaintCanvas"></canvas>
+            <canvas class="tradition-inpaint-view-canvas" ref="traditionInpaintCanvas"
+                @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
@@ -22,7 +23,7 @@
                 <h3>{{ penThickness }}</h3>
                 <!--number type limit & range limit-->
                 <!--限制输入类型只能为数字并且限制范围-->
-                <el-input-number v-model="lineWidth" :min="0" :max="100" />
+                <el-input-number v-model="lineWidth" :min="1" :max="100" />
                 <h3>&nbsp;&nbsp;px</h3>
             </div> 
             <div class="turn-erase">
@@ -65,6 +66,10 @@ export default{
     data(){
         return {
             imageTIURL: store.state.imageURL,
+            context: null,
+            // control whether paint or not
+            // 决定是否绘图
+            drawing: false,
             lineWidth: 0,
             eraseOn: false,
             modeValue: ref(''),
@@ -88,7 +93,46 @@ export default{
             // set the new zoom level
             // 设置新的缩放程度
             this.$refs.traditionInpaintViewContent.style.zoom = zoom + "%";
-        },        
+        },  
+        startDrawing(event){
+            if(this.eraseOn){
+                // eraser mode 
+                // 橡皮擦模式
+                this.context.globalCompositeOperation = 'destination-out';
+            }
+            else{
+                this.context.globalCompositeOperation = 'source-over'
+            }
+            // allow drawing
+            // 允许绘图
+            this.drawing = true;
+            // define starting point('sp')
+            // 定义初始点
+            [this.lastX, this.lastY] = [event.offsetX, event.offsetY];
+        },  
+        draw(event){
+            if(!this.drawing)return;
+            // set the style of stroke, rgb(255,255,255) for painting rgb(0,0,0) for erasing
+            // 设置字迹的样式，rgb(255,255,255)用于绘图、而rgb(0,0,0)用于擦除
+            this.context.strokeStyle = this.eraseOn ? `rgb(255,255,255)`:`rgb(0,0,0)`;
+            // set the line width when painting or erasing.
+            // 设置绘图或者擦除视乎的笔记粗细
+            this.context.lineWidth = this.lineWidth;
+            this.context.beginPath();
+            // move the pen to exact location
+            // 将“笔”移动到确切的起始点
+            this.context.moveTo(this.lastX, this.lastY); 
+            //  define ending point('ep'), and create line which from 'sp' to 'ep'
+            // 确定“笔”的终点，创造起始点和终点的线
+            this.context.lineTo(event.offsetX, event.offsetY);  
+            // paint the path
+            // 画线
+            this.context.stroke();   
+            [this.lastX, this.lastY] = [event.offsetX, event.offsetY];
+        },
+        stopDrawing(){
+            this.drawing = false;
+        }    
     },
     computed:{
         backHome(){
