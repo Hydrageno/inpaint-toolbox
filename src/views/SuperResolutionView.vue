@@ -1,36 +1,21 @@
 <template>
-    <div class="tradition-inpaint-view">
+    <div class="super-resolution-view">
         <!--navigator for current view-->
         <!--当前页面的导航栏-->
-        <div class="tradition-inpaint-view-navigator">
+        <div class="super-resolution-view-navigator">
             <div class="back-main" @click="backMain">
                 <h1>←{{ backHome }}</h1>
             </div>
         </div>
         <!--container for canvas-->
         <!--画布的容器-->
-        <div class="tradition-inpaint-view-content" ref="traditionInpaintViewContent">
-            <canvas class="tradition-inpaint-view-canvas" ref="traditionInpaintCanvas"
+        <div class="super-resolution-view-content" ref="superResolutionViewContent">
+            <canvas class="super-resolution-view-canvas" ref="superResolutionInpaintCanvas"
                 @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
-        <div class="tradition-inpaint-view-toolbar">
-            <div class="custom-thickness">
-                <!--Pen for canvas-->
-                <!--画布的笔-->
-                <el-icon :size="20"><EditPen /></el-icon>
-                <h3>{{ penThickness }}</h3>
-                <!--number type limit & range limit-->
-                <!--限制输入类型只能为数字并且限制范围-->
-                <el-input-number v-model="lineWidth" :min="1" :max="100" />
-                <h3>&nbsp;&nbsp;px</h3>
-            </div> 
-            <div class="turn-erase">
-                <!--Eraser for canvas-->
-                <!--画布的橡皮擦-->
-                <el-switch v-model="eraseOn" inline-prompt :active-text="eraseText" :inactive-text="penText" size="large"></el-switch>
-            </div>
+        <div class="super-resolution-view-toolbar">
             <div class="mode-select">
                 <!--INPAINT MODE SELECTOR-->
                 <!--修复模式选择器-->
@@ -59,7 +44,7 @@ import store from '@/store'
 //import 'default-passive-events'
 
 export default{
-    name: 'TraditionInpaintView',
+    name: 'SuperResolutionView',
     components:{
         EditPen,
     },
@@ -227,9 +212,9 @@ export default{
 h3{
     display: inline;
 }
-.tradition-inpaint-view{
+.super-resolution-view{
     height: 100vh;
-    .tradition-inpaint-view-navigator{
+    .super-resolution-view-navigator{
         // make the navigator fix to its location.
         // 让导航栏与网页保持相对距离
         position: fixed;
@@ -247,12 +232,12 @@ h3{
             justify-content: center;
         }
     }
-    .tradition-inpaint-view-content{
+    .super-resolution-view-content{
         transform-origin: left top;
         margin: 0 auto;
         width: fit-content;
     }
-    .tradition-inpaint-view-toolbar{
+    .super-resolution-view-toolbar{
         height: 2.0em;
         width: 52rem;
         position: fixed;
@@ -277,31 +262,6 @@ h3{
         // 让内部元素垂直居中。
         display: flex;
         align-items: center;
-        .custom-thickness{
-            //background-color: red;
-            flex: 3;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            // make inner element center both horizontal and vertical.
-            // 让内部元素水平、垂直居中。
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .turn-erase{
-            //background-color: green;
-            // make inner element center horizontal.
-            // 让内部元素水平居中。
-            display: flex;
-            justify-content: center;
-            .el-switch{
-                span{
-                    // set the font color.
-                    // 设置字体颜色
-                    color:black;
-                }
-            }
-            flex: 1;
-        }
         .mode-select{
             //background-color: black;
             flex: 2;
