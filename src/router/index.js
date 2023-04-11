@@ -21,7 +21,12 @@ const routes = [
     path: '/removal-inpaint',
     name: 'removal-inpaint',
     component: () => import('@/views/RemovalInpaintView.vue')
-  }
+  },
+  {
+    path: '/saliency-edge-inpaint',
+    name: 'saliency-edge-inpaint',
+    component: () => import('@/views/SaliencyEdgeInpaintView.vue')
+  },
   // {
   //   path: '/about',
   //   name: 'about',

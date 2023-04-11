@@ -148,7 +148,9 @@ export default{
             else if(this.viewType == "SR")
                 this.$router.push({path: "/super-resolution"});
             else if(this.viewType == "RI")
-                this.$router.push({path: "/removal-inpaint"})
+                this.$router.push({path: "/removal-inpaint"});
+            else if(this.viewType == "SEI")
+            this.$router.push({path: "/saliency-edge-inpaint"});
         }
     },
     computed:{
