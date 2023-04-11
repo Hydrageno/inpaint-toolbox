@@ -18,7 +18,7 @@
         <div class="super-resolution-upload-image">
             <!--pass egImageAddrs by component communication-->
             <!--使用组件通信给egImageAddrs赋值-->
-            <upload-image :egImageAddrs="egImageSRAddrs"></upload-image>
+            <upload-image :egImageAddrs="egImageSRAddrs" :viewType="viewType"></upload-image>
         </div>
         <div class="super-resolution-use-case">
             <div class="super-resolution-use-case-content">
@@ -47,7 +47,8 @@ export default{
     data(){
         return {
             egImageSRAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png"]
+            "https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            viewType: "SR"
         }
     },
     computed:{

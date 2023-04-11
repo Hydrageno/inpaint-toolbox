@@ -145,6 +145,8 @@ export default{
         jumpCertainPage(){
             if(this.viewType == "TI")
                 this.$router.push({path: "/tradition-inpaint"});
+            else if(this.viewType == "SR")
+                this.$router.push({path: "/super-resolution"});
         }
     },
     computed:{

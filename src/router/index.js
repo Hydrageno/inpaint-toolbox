@@ -11,6 +11,11 @@ const routes = [
     path: '/tradition-inpaint',
     name: 'tradition-inpaint',
     component: () => import('@/views/TraditionInpaintView.vue')
+  },
+  {
+    path: '/super-resolution',
+    name: 'super-resolution',
+    component: () => import('@/views/SuperResolutionView.vue')
   }
   // {
   //   path: '/about',
