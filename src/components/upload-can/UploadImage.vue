@@ -147,6 +147,8 @@ export default{
                 this.$router.push({path: "/tradition-inpaint"});
             else if(this.viewType == "SR")
                 this.$router.push({path: "/super-resolution"});
+            else if(this.viewType == "RI")
+                this.$router.push({path: "/removal-inpaint"})
         }
     },
     computed:{

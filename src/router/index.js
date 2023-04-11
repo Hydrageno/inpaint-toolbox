@@ -16,6 +16,11 @@ const routes = [
     path: '/super-resolution',
     name: 'super-resolution',
     component: () => import('@/views/SuperResolutionView.vue')
+  },
+  {
+    path: '/removal-inpaint',
+    name: 'removal-inpaint',
+    component: () => import('@/views/RemovalInpaintView.vue')
   }
   // {
   //   path: '/about',

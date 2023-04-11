@@ -23,7 +23,7 @@
         <div class="removal-inpaint-upload-image">
             <!--pass egImageAddrs by component communication-->
             <!--使用组件通信给egImageAddrs赋值-->
-            <upload-image :egImageAddrs="egImageRIAddrs"></upload-image>
+            <upload-image :egImageAddrs="egImageRIAddrs" :viewType="viewType"></upload-image>
         </div>
         <div class="removal-inpaint-use-case">
             <div class="removal-inpaint-use-case-content">
@@ -52,8 +52,9 @@ export default{
     data(){
         return {
             egImageRIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png"]
-        }
+            "https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            viewType: "RI"
+        }    
     },
     computed:{
         picHave(){
