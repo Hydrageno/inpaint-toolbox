@@ -10,8 +10,7 @@
         <!--container for canvas-->
         <!--画布的容器-->
         <div class="super-resolution-view-content" ref="superResolutionViewContent">
-            <canvas class="super-resolution-view-canvas" ref="superResolutionViewCanvas"
-                @mousedown="startDrawing" @mousemove="draw" @mouseup="stopDrawing"></canvas>
+            <canvas class="super-resolution-view-canvas" ref="superResolutionViewCanvas"></canvas>
         </div>
         <!--toolbar for canvas-->
         <!--画布的工具栏-->
@@ -31,7 +30,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import store from '@/store'
 //import 'default-passive-events'
 
