@@ -146,7 +146,49 @@ export default{
         },
         stopDrawing(){
             this.drawing = false;
-        }    
+        },
+        submitPainted(){
+            // first, save the canvas.
+            // 保存画布上的图像信息。
+            let imageData = this.$refs.traditionInpaintCanvas.toDataURL({format: 'png', quality: 1, width: store.state.imageWidth, height: store.state.imageHeight});
+            // convert img data to blob type for transfer.
+            // 将图像信息转换为2进制方便传输。
+            let blob = this.dataURLtoBlob(imageData)
+            let href = URL.createObjectURL(blob);
+            // in fecth the value of 'this' changed.
+            // 由于在内部的this指向并非Vue故需要找个替身。
+            let replacer = this; 
+            fetch(href)
+                .then(response => response.blob())
+                .then(blob => {
+                    const formData = new FormData();
+                    // add picture flow
+                    // 添加图像流
+                    formData.append('image', blob, 'upload.jpg');
+                    // add inpaint type
+                    // 添加修复类型
+                    formData.append('inpaint-type', replacer.modeValue);
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'http://127.0.0.1:5000/upload-painted');
+                    xhr.onload = function(){
+                    if(xhr.status === 200 && xhr.readyState === 4){
+                        console.log(xhr.response);
+                        replacer.painted = true;
+                    }
+                }
+            xhr.send(formData)
+            })
+        },
+        dataURLtoBlob: function(dataurl) {
+            // this method aims to convert data to blob.
+            // 该方法旨在将数据转换为blob类型
+            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type:mime});
+        },
     },
     computed:{
         backHome(){
@@ -206,30 +248,30 @@ export default{
         }
     },
     mounted(){
-    // set the background image.
-    // 设置背景图片。
-    this.$refs.traditionInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
-    // set height and width for canvas.
-    // 为画布设置高度和宽度。
-    this.$refs.traditionInpaintCanvas.height = store.state.imageHeight;
-    this.$refs.traditionInpaintCanvas.width = store.state.imageWidth;
+        // set the background image.
+        // 设置背景图片。
+        this.$refs.traditionInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+        // set height and width for canvas.
+        // 为画布设置高度和宽度。
+        this.$refs.traditionInpaintCanvas.height = store.state.imageHeight;
+        this.$refs.traditionInpaintCanvas.width = store.state.imageWidth;
 
-    // add wheel zoom event.
-    // 添加鼠标滚轮缩放事件。
-    const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
-    traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
+        // add wheel zoom event.
+        // 添加鼠标滚轮缩放事件。
+        const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
+        traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
 
-    // draw the background for canvas.
-    // 为画布画图。
-    const traditionInpaintCanvas = this.$refs.traditionInpaintCanvas;
-    const ctx = traditionInpaintCanvas.getContext('2d');
+        // draw the background for canvas.
+        // 为画布画图。
+        const traditionInpaintCanvas = this.$refs.traditionInpaintCanvas;
+        const ctx = traditionInpaintCanvas.getContext('2d');
 
-    // set style of line.
-    // 设置线条之间的样式。
-    this.context = ctx;
-    this.context.lineJoin = 'round';
-    this.context.lineCap = 'round';
-  }
+        // set style of line.
+        // 设置线条之间的样式。
+        this.context = ctx;
+        this.context.lineJoin = 'round';
+        this.context.lineCap = 'round';
+    }
 }
 </script>
 
