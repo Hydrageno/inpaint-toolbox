@@ -44,12 +44,12 @@
                 </el-button>
             </div>
             <div class="request-saliency-edge">
-                <el-button size="small" @click="requestSaliencyEdge" :disabled="requestLocked">
+                <el-button size="small" @click="requestSaliencyEdge" :disabled="requestSELocked">
                     <h2>{{ request }}</h2>
                 </el-button>
             </div>
             <div class="request-saliency-object">
-                <el-button size="small" @click="requestSaliencyObject" :disabled="requestLocked">
+                <el-button size="small" @click="requestSaliencyObject" :disabled="requestSOLocked">
                     <h2>{{ downloadSO }}</h2>
                 </el-button>
             </div>
@@ -94,6 +94,8 @@ export default{
             // 在服务器处理数据期间阻止用户点击按钮。
             submitLocked: false,
             downloadLocked: true,
+            requestSELocked: false,
+            requestSOLocked: false
         }
     },
     methods:{
@@ -176,6 +178,8 @@ export default{
             // 阻止用户点击任何按钮。
             replacer.submitLocked = true;
             replacer.downloadLocked = true;
+            replacer.requestSELocked = true;
+            replacer.requestSOLocked = true;
             fetch(href)
                 .then(response => response.blob())
                 .then(blob => {
@@ -195,6 +199,8 @@ export default{
                         // 允许用户再次提交，或者下载结果。
                         replacer.submitLocked = false;
                         replacer.downloadLocked = false;
+                        replacer.requestSELocked = false;
+                        replacer.requestSOLocked = false;
                     }
                 }
             xhr.send(formData)
@@ -215,7 +221,11 @@ export default{
             let replacer = this;
             let xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://127.0.0.1:5000/request-guide');
-            xhr.responseType = 'blob'
+            xhr.responseType = 'blob';
+            replacer.submitLocked = true;
+            replacer.downloadLocked = true;
+            replacer.requestSELocked = true;
+            replacer.requestSOLocked = true;
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
                     console.log("request guide connection build");
@@ -225,7 +235,11 @@ export default{
                     const img = new Image();
                     img.src = guidedImageURL;
                     img.onload = function(){
-                       replacer.context.drawImage(img, 0, 0);
+                        replacer.context.drawImage(img, 0, 0);
+                        replacer.submitLocked = false;
+                        replacer.downloadLocked = false;
+                        replacer.requestSELocked = false;
+                        replacer.requestSOLocked = false;
                     }
                 }
             }
@@ -233,7 +247,11 @@ export default{
         },
         requestSaliencyObject:function(){
             let xhr = new XMLHttpRequest();
-            //let replacer = this;
+            let replacer = this;
+            replacer.submitLocked = true;
+            replacer.downloadLocked = true;
+            replacer.requestSELocked = true;
+            replacer.requestSOLocked = true;
             xhr.open('POST', 'http://127.0.0.1:5000/download-guide');
             xhr.responseType = 'blob'
             xhr.onload = function(){
@@ -249,6 +267,10 @@ export default{
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
+                    replacer.submitLocked = false;
+                    replacer.downloadLocked = false;
+                    replacer.requestSELocked = false;
+                    replacer.requestSOLocked = false;
                 }
             }
             xhr.send();
@@ -262,6 +284,8 @@ export default{
             let replacer = this;
             replacer.submitLocked = true;
             replacer.downloadLocked = true;
+            replacer.requestSELocked = true;
+            replacer.requestSOLocked = true;
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
                     console.log("download-inpaint connection build");
@@ -279,6 +303,8 @@ export default{
                     document.body.removeChild(a);
                     replacer.submitLocked = false;
                     replacer.downloadLocked = false;
+                    replacer.requestSELocked = false;
+                    replacer.requestSOLocked = false;
                 }
             }
             xhr.send();
