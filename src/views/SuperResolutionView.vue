@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { EditPen } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import store from '@/store'
 //import 'default-passive-events'
@@ -46,7 +45,7 @@ import store from '@/store'
 export default{
     name: 'SuperResolutionView',
     components:{
-        EditPen,
+
     },
     data(){
         return {
@@ -69,12 +68,12 @@ export default{
             this.$router.push({path: '/'});
         },
         handleZoom(event){
-            const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
+            const superResolutionViewContent = this.$refs.superResolutionViewContent;
             // set zoom factor
             // 设置缩放因子
             const scaleDelta = event.deltaY > 0 ? 0.9 : 1.1; 
             const { clientX, clientY } = event;
-            const boundingRect = traditionInpaintViewContent.getBoundingClientRect();
+            const boundingRect = superResolutionViewContent.getBoundingClientRect();
             const x = clientX - boundingRect.left;
             const y = clientY - boundingRect.top;
             // update scale value
@@ -86,7 +85,7 @@ export default{
             // update y-axis translation value
             // 更新translateY值
             this.translateY = (1 - scaleDelta) * y + this.translateY; 
-            traditionInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
+            superResolutionViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
         },
 
         downloadResult:function(){
@@ -124,37 +123,37 @@ export default{
         backHome(){
             // switch the content follow the value of 'language' attribute in i18n.
             // 通过i18n中的language属性值来调整展示的内容，如果为zh则显示中文内容，否则显示英文内容。
-            return this.$t('traditionInpaintView.navigatorText.backHome')
+            return this.$t('superResolutionView.navigatorText.backHome')
         },
         penThickness(){
-            return this.$t('traditionInpaintView.toolBar.penThickness')
+            return this.$t('superResolutionView.toolBar.penThickness')
         },
         eraseText(){
-            return this.$t('traditionInpaintView.toolBar.eraseText')
+            return this.$t('superResolutionView.toolBar.eraseText')
         },
         penText(){
-            return this.$t('traditionInpaintView.toolBar.penText')
+            return this.$t('superResolutionView.toolBar.penText')
         },
         selectMode(){
-            return this.$t('traditionInpaintView.toolBar.selectMode')
+            return this.$t('superResolutionView.toolBar.selectMode')
         },
         celehq(){
-            return this.$t('traditionInpaintView.toolBar.celehq')
+            return this.$t('superResolutionView.toolBar.celehq')
         },
         places(){
-            return this.$t('traditionInpaintView.toolBar.places')
+            return this.$t('superResolutionView.toolBar.places')
         },
         imageNet(){
-            return this.$t('traditionInpaintView.toolBar.imageNet')
+            return this.$t('superResolutionView.toolBar.imageNet')
         },
         animation(){
-            return this.$t('traditionInpaintView.toolBar.animation')
+            return this.$t('superResolutionView.toolBar.animation')
         },
         submit(){
-            return this.$t('traditionInpaintView.toolBar.submit')
+            return this.$t('superResolutionView.toolBar.submit')
         },
         download(){
-            return this.$t('traditionInpaintView.toolBar.download')
+            return this.$t('superResolutionView.toolBar.download')
         },
         modeOptions(){
             return [
@@ -180,21 +179,21 @@ export default{
     mounted(){
         // set the background image.
         // 设置背景图片。
-        this.$refs.traditionInpaintViewContent.style.backgroundImage = `url(${this.imageTIURL})`
+        this.$refs.superResolutionViewContent.style.backgroundImage = `url(${this.imageTIURL})`
         // set height and width for canvas.
         // 为画布设置高度和宽度。
-        this.$refs.traditionInpaintCanvas.height = store.state.imageHeight;
-        this.$refs.traditionInpaintCanvas.width = store.state.imageWidth;
+        this.$refs.superResolutionCanvas.height = store.state.imageHeight;
+        this.$refs.superResolutionCanvas.width = store.state.imageWidth;
 
         // add wheel zoom event.
         // 添加鼠标滚轮缩放事件。
-        const traditionInpaintViewContent = this.$refs.traditionInpaintViewContent;
-        traditionInpaintViewContent.addEventListener('wheel', this.handleZoom);
+        const superResolutionViewContent = this.$refs.superResolutionViewContent;
+        superResolutionViewContent.addEventListener('wheel', this.handleZoom);
 
         // draw the background for canvas.
         // 为画布画图。
-        const traditionInpaintCanvas = this.$refs.traditionInpaintCanvas;
-        const ctx = traditionInpaintCanvas.getContext('2d');
+        const superResolutionCanvas = this.$refs.superResolutionCanvas;
+        const ctx = superResolutionCanvas.getContext('2d');
 
         // set style of line.
         // 设置线条之间的样式。
