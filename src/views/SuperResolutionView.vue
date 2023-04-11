@@ -47,7 +47,8 @@ export default{
             scale: 1,
             translateX: 0,
             translateY: 0,
-            modeValue: ref(''),
+            superResolutionScale: 2,
+            superResolutionType: 1,
             // aims to prevent user from clicking the button.
             // 在服务器处理数据期间阻止用户点击按钮。
             submitLocked: false,
@@ -80,7 +81,24 @@ export default{
             this.translateY = (1 - scaleDelta) * y + this.translateY; 
             superResolutionViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
         },
-
+        requestSuperResolution:function(){
+            // this methods doesn't need to submit canvas picture
+            // 该方法无需上传画布图片
+            let replacer = this;
+            this.superResolved = false;
+            let xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append('sr-scale', replacer.superResolutionScale);
+            formData.append('sr-type', replacer.superResolutionType);
+            xhr.open('POST', 'http://127.0.0.1:5000/upload-sr');
+            xhr.onload = function(){
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    console.log(xhr.response);
+                    replacer.superResolved = true;
+                }
+            }
+            xhr.send(formData);
+        },
         downloadResult:function(){
             let xhr = new XMLHttpRequest();
             xhr.open('POST', 'http://127.0.0.1:5000/download-sr');
