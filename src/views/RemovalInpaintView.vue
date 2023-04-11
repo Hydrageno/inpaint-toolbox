@@ -59,7 +59,7 @@ import store from '@/store'
 //import 'default-passive-events'
 
 export default{
-    name: 'removalInpaintView',
+    name: 'RemovalInpaintView',
     components:{
         EditPen,
     },
