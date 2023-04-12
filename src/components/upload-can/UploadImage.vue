@@ -96,13 +96,13 @@ export default{
             let replacer = this;
             // post the url.
             // 使用POST来连接。
-            xhr.open('POST', 'http://127.0.0.1:5000/upload');
+            xhr.open('POST', 'http://127.0.0.1:5000/custom-upload');
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
                     console.log("upload connection build");    
                     // get the image from back-end.
                     // 接收后端来的图片。
-                    xhr.open('GET', 'http://127.0.0.1:5000/get-image');
+                    xhr.open('GET', 'http://127.0.0.1:5000/return-image-flow');
                     // set response type.
                     // 设定返回类型。
                     xhr.responseType = 'blob'
@@ -117,7 +117,7 @@ export default{
                             store.commit('setImageURL', imageURL);
                             // get the image size from back-end.
                             // 从后端获取图片的尺寸大小。
-                            xhr.open('GET', 'http://127.0.0.1:5000/get-image-size');
+                            xhr.open('GET', 'http://127.0.0.1:5000/return-image-size');
                             xhr.responseType = 'text'
                             xhr.onload = function(){
                                 if(xhr.status === 200 && xhr.readyState === 4){
