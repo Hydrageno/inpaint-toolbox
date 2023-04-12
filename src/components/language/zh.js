@@ -25,7 +25,7 @@ export default {
                     superResolve: "超分辨率",
                     withWantedPic: "上传待操作的图片",
                     customScale: "体验不同尺寸：",
-                    scaleSequence: "X2、X3.5以及X4"
+                    scaleSequence: "X2、X3以及X4"
                 },
                 useCase: "—— 教 - 程 ——"
             },

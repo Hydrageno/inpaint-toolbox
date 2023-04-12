@@ -25,7 +25,7 @@ export default {
                     superResolve: "Super Resolve",
                     withWantedPic: "Upload Wanted Image",
                     customScale: "Custom Scale:",
-                    scaleSequence: "X2、X3.5、X4"
+                    scaleSequence: "X2、X3、X4"
                 },
                 useCase: "——  Tutorial  ——"
             },
