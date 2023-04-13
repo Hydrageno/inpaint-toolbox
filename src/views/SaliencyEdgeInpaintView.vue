@@ -259,14 +259,16 @@ export default{
             xhr.responseType = 'blob'
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
-                    console.log("download-inpaint connection build");
+                    console.log("download-saliency-object connection build");
                     let response = xhr.response;
                     let blob = response;
                     let inpaintImageURL = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = inpaintImageURL;
                     a.style.display = 'none';
-                    a.download = 'saliencyObject.png'
+                    if(replacer.$i18n.locale === "zh")
+                        a.download = '显著性目标.png'
+                    else a.download = 'saliencyObject.png'
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -301,7 +303,9 @@ export default{
                     const a = document.createElement('a');
                     a.href = inpaintImageURL;
                     a.style.display = 'none';
-                    a.download = 'inpaintedImage.png'
+                    if(replacer.$i18n.locale === "zh")
+                        a.download = '修复后.png'
+                    else a.download = 'inpaintedImage.png'
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);

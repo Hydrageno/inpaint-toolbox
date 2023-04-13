@@ -133,7 +133,9 @@ export default{
                     const a = document.createElement('a');
                     a.href = inpaintImageURL;
                     a.style.display = 'none';
-                    a.download = 'superResolved.png'
+                    if(replacer.$i18n.locale === "zh")
+                        a.download = '超分后.png'
+                    else a.download = 'superResolved.png'
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);

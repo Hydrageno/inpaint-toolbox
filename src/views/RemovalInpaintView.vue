@@ -220,7 +220,9 @@ export default{
                     const a = document.createElement('a');
                     a.href = inpaintImageURL;
                     a.style.display = 'none';
-                    a.download = 'inpaintedImage.png'
+                    if(replacer.$i18n.locale === "zh")
+                        a.download = '去除后.png'
+                    else a.download = 'removalImage.png'
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
