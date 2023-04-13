@@ -143,9 +143,9 @@ export default{
         },  
         draw(event){
             if(!this.drawing)return;
-            // set the style of stroke, rgb(255,255,255) for painting rgb(0,0,0) for erasing
-            // 设置字迹的样式，rgb(255,255,255)用于绘图、而rgb(0,0,0)用于擦除
-            this.context.strokeStyle = this.eraseOn ? `rgb(255,255,255)`:`rgb(0,0,0)`;
+            // set the style of stroke, #C3FF1A for painting rgb(0,0,0) for erasing
+            // 设置字迹的样式，#C3FF1A用于绘图、而rgb(0,0,0)用于擦除
+            this.context.strokeStyle = this.eraseOn ? `rgb(0,0,0)`:`#C3FF1A`;
             // set the line width when painting or erasing.
             // 设置绘图或者擦除视乎的笔记粗细
             this.context.lineWidth = this.lineWidth;
