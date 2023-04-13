@@ -158,10 +158,49 @@ export default{
             let xhr = new XMLHttpRequest();
             // post the url.
             // 使用POST来连接。
+            let replacer = this;
             xhr.open('POST', 'http://127.0.0.1:5000/given-upload');
             xhr.onload = function(){
                 if(xhr.status === 200 && xhr.readyState === 4){
-                    console.log("given upload connection build")
+                    console.log("given upload connection build");    
+                    // get the image from back-end.
+                    // 接收后端来的图片。
+                    xhr.open('GET', 'http://127.0.0.1:5000/return-image-flow');
+                    // set response type.
+                    // 设定返回类型。
+                    xhr.responseType = 'blob'
+                    xhr.onload = function(){
+                        if(xhr.status === 200 && xhr.readyState === 4){
+                            console.log("get-image connection build");
+                            let response = xhr.response;
+                            let blob = response
+                            let imageURL = window.URL.createObjectURL(blob);
+                            // execute the setImageURL method in store instance.
+                            // 执行store中的setImageURL方法。
+                            store.commit('setImageURL', imageURL);
+                            // get the image size from back-end.
+                            // 从后端获取图片的尺寸大小。
+                            xhr.open('GET', 'http://127.0.0.1:5000/return-image-size');
+                            xhr.responseType = 'text'
+                            xhr.onload = function(){
+                                if(xhr.status === 200 && xhr.readyState === 4){
+                                    console.log("get-image-size connection build");
+                                    // split the size(height, width) from back-end.
+                                    // 将后端中的(height, width)数据进行分割。
+                                    const sizeArr = xhr.response.split('_');
+                                    store.commit('setImageSize', sizeArr);
+                                    // execute the setImageSize method in store instance.
+                                    // 执行store中的setImageSize方法。
+                                    console.log(store.state.imageURL);
+                                    // jump to certain page.
+                                    // 跳转到对应的页面。
+                                    replacer.jumpCertainPage();  
+                                }
+                            }   
+                            xhr.send();
+                        }
+                    }   
+                    xhr.send(); 
                 }
             }
             xhr.send(formData);
