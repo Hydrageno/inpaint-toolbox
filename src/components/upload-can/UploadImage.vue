@@ -41,7 +41,7 @@
             <!--image example for user-->
             <!--展示给用户的样例图片-->
             <div class="provided-upload-image-list">
-                <img class="provided-upload-image" v-for="(imgSrc, index) in egImageAddrs" :key="index" :src="imgSrc" width="120" height="130">
+                <img class="provided-upload-image" v-for="(imgSrc, index) in egImageAddrs" :key="index" :src="imgSrc" width="120" height="130" @click="uploadGivenImage">
             </div>
         </div>
     </div>
@@ -138,6 +138,30 @@ export default{
                         }
                     }   
                     xhr.send(); 
+                }
+            }
+            xhr.send(formData);
+        },
+        uploadGivenImage(event){
+            // synchronous methods.
+            // 同步方法。
+            // create a new form data object.
+            // 创建FormData对象。
+            const formData = new FormData();
+            // append the file to the form data object.
+            // 将文件添加到formData中。
+            formData.append('src', event.target.src);
+            // post the image url to back-end.
+            // 将图片URL传给后端。
+            // create synchronous request.
+            // 创建一个同步请求对象。
+            let xhr = new XMLHttpRequest();
+            // post the url.
+            // 使用POST来连接。
+            xhr.open('POST', 'http://127.0.0.1:5000/given-upload');
+            xhr.onload = function(){
+                if(xhr.status === 200 && xhr.readyState === 4){
+                    console.log("given upload connection build")
                 }
             }
             xhr.send(formData);
