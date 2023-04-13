@@ -316,7 +316,10 @@ h3{
     .removal-inpaint-view-navigator{
         // make the navigator fix to its location.
         // 让导航栏与网页保持相对距离
-        position: fixed;
+        //position: fixed;
+        // dimensionalization in z-direction.
+        // Z轴升维
+        z-index: 5;
         .back-main{
             cursor: pointer;
             width: 35vh;
@@ -333,7 +336,7 @@ h3{
     }
     .removal-inpaint-view-content{
         transform-origin: left top;
-        margin: 0 auto;
+        margin: auto;
         width: fit-content;
     }
     .removal-inpaint-view-toolbar{
