@@ -51,6 +51,9 @@ export default {
                     tryTool: "快来试试这个工具"
                 },
                 useCase: "—— 典 - 范 ——"
+            },
+            footer: {
+                codeBasedOn: "项目基于："
             }
         },
         uploadImage: {

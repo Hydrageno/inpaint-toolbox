@@ -59,7 +59,7 @@
       <!--thankful for sponsor.-->
       <!--使用的开源代码，诚挚感谢使用的开源项目开发者！-->
       <div id="thankful">
-        <el-link href="" type="info" :underline="false" disabled>&nbsp;&nbsp;&nbsp;&nbsp;Code Base on</el-link>
+        <el-link href="" type="info" :underline="false" disabled>&nbsp;&nbsp;&nbsp;&nbsp;{{ codeBasedOn }}</el-link>
         <el-link href="https://github.com/lyndonzheng/TFill" type="info">TFill</el-link>,
         <el-link href="https://github.com/xinntao/Real-ESRGAN" type="info">Real-ESRGAN</el-link>,
         <el-link href="https://github.com/plemeri/InSPyReNet" type="info">InSPyReNet</el-link>
@@ -136,6 +136,9 @@ export default {
     saliencyEdgeInpaintNavigatorMessage(){
       return this.$t('homeview.navigatorText.saliencyEdgeInpaintNavigatorText');
     },
+    codeBasedOn(){
+      return this.$t('homeview.footer.codeBasedOn');
+    }
   }
 }
 </script>

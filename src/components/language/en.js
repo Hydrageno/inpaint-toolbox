@@ -51,6 +51,9 @@ export default {
                     tryTool: "Come and Try it!"
                 },
                 useCase: "—— Use - Case ——"
+            },
+            footer: {
+                codeBasedOn: "Code Based On:"
             }
         },
         uploadImage: {
