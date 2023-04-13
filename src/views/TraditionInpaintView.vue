@@ -110,7 +110,7 @@ export default{
             // update y-axis translation value
             // 更新translateY值
             this.translateY = (1 - scaleDelta) * y + this.translateY; 
-            traditionInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
+            traditionInpaintViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0px)`;
         },
         startDrawing(event){
             if(this.eraseOn){
@@ -349,7 +349,8 @@ h3{
         }
     }
     .tradition-inpaint-view-content{
-        transform-origin: left top;
+        //transform-origin: left top;
+        transform-origin: 0% 0%;
         margin: auto;
         width: fit-content;
     }

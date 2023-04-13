@@ -91,7 +91,7 @@ export default{
             // update y-axis translation value
             // 更新translateY值
             this.translateY = (1 - scaleDelta) * y + this.translateY; 
-            superResolutionViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0)`;
+            superResolutionViewContent.style.transform = `scale(${this.scale}) translate3d(${this.translateX}px, ${this.translateY}px, 0px)`;
         },
         requestSuperResolution:function(){
             // this methods doesn't need to submit canvas picture
@@ -224,7 +224,8 @@ h3{
         }
     }
     .super-resolution-view-content{
-        transform-origin: left top;
+        //transform-origin: left top;
+        transform-origin: 0% 0%;
         margin: auto;
         width: fit-content;
     }
