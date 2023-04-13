@@ -70,7 +70,7 @@ export default{
             // control whether paint or not.
             // 决定是否绘图。
             drawing: false,
-            lineWidth: 0,
+            lineWidth: 1,
             // control whether erase or not.
             // 决定是否擦除模式。
             eraseOn: false,
@@ -353,6 +353,9 @@ h3{
         transform-origin: 0% 0%;
         margin: auto;
         width: fit-content;
+        .tradition-inpaint-view-canvas{
+            cursor: url('../assets/pcursor.ico') 100 100, auto;
+        }
     }
     .tradition-inpaint-view-toolbar{
         height: 2.0em;

@@ -228,6 +228,9 @@ h3{
         transform-origin: 0% 0%;
         margin: auto;
         width: fit-content;
+        .super-resolution-view-canvas{
+            cursor: url('../assets/pcursor.ico'), auto;
+        }
     }
     .super-resolution-view-toolbar{
         height: 2.0em;
