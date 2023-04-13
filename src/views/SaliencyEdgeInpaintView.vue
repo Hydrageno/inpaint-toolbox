@@ -92,6 +92,7 @@ export default{
             modeValue: ref(''),
             // aims to prevent user from clicking the button.
             // 在服务器处理数据期间阻止用户点击按钮。
+            hasSubmited: false,
             submitLocked: false,
             downloadLocked: true,
             requestSELocked: false,
@@ -201,6 +202,7 @@ export default{
                         replacer.downloadLocked = false;
                         replacer.requestSELocked = false;
                         replacer.requestSOLocked = false;
+                        replacer.hasSubmited = true;
                     }
                 }
             xhr.send(formData)
@@ -237,7 +239,8 @@ export default{
                     img.onload = function(){
                         replacer.context.drawImage(img, 0, 0);
                         replacer.submitLocked = false;
-                        replacer.downloadLocked = false;
+                        if(replacer.hasSubmited === true)
+                            replacer.downloadLocked = false;
                         replacer.requestSELocked = false;
                         replacer.requestSOLocked = false;
                     }
@@ -268,7 +271,8 @@ export default{
                     a.click();
                     document.body.removeChild(a);
                     replacer.submitLocked = false;
-                    replacer.downloadLocked = false;
+                    if(replacer.hasSubmited === true)
+                            replacer.downloadLocked = false;
                     replacer.requestSELocked = false;
                     replacer.requestSOLocked = false;
                 }
