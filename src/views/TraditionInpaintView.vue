@@ -354,7 +354,7 @@ h3{
         margin: auto;
         width: fit-content;
         .tradition-inpaint-view-canvas{
-            cursor: url('../assets/pcursor.ico') 100 100, auto;
+            cursor: cell;
         }
     }
     .tradition-inpaint-view-toolbar{

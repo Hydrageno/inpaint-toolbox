@@ -340,7 +340,7 @@ h3{
         margin: auto;
         width: fit-content;
         .removal-inpaint-view-canvas{
-            cursor: url('../assets/pcursor.ico'), auto;
+            cursor: cell;
         }
     }
     .removal-inpaint-view-toolbar{

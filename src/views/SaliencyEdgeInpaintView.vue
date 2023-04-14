@@ -438,7 +438,7 @@ h3{
         margin: auto;
         width: fit-content;
         .saliency-edge-inpaint-view-canvas{
-            cursor: url('../assets/pcursor.ico'), auto;
+            cursor: cell;
         }
     }
     .saliency-edge-inpaint-view-toolbar{
