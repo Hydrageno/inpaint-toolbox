@@ -4,7 +4,7 @@
         <!--为显著性目标边缘检测创建描述区-->
         <div class="saliency-edge-inpaint-description">
             <div class="saliency-edge-inpaint-description-content">
-                <img src="@/assets/demo.gif" class="saliency-edge-inpaint-description-animation">
+                <img src="@/assets/sei_animation.gif" class="saliency-edge-inpaint-description-animation">
                 <!--add description text for saliency-edge-inpaint-->
                 <!--为显著性目标边缘检测添加描述性文字-->
                 <div class="saliency-edge-inpaint-description-text">
@@ -31,7 +31,7 @@
                 <!--lesson picture for saliency-edge-inpaint-->
                 <!--为图像修复添加教程图片-->
                 <div class="saliency-edge-inpaint-use-case-picture">
-                    <img src="@/assets/usecase.jpg">
+                    <img src="@/assets/sei_usecase.png">
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@ export default{
     },
     data(){
         return {
-            egImageSEIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            egImageSEIAddrs: ["https://i.328888.xyz/2023/04/16/iEEMUE.png"],
             viewType: "SEI"
         }
     },
@@ -103,7 +103,7 @@ export default{
                 border-radius: 30px;
                 border-style: none;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                width: 25%;
+                width: 20%;
             }
             .saliency-edge-inpaint-description-text{
                 // set the style of font.
@@ -144,21 +144,21 @@ export default{
             align-items: center; 
             flex-direction: column;
             .saliency-edge-inpaint-use-case-title{
-                flex: 1;
+                flex: 0.5;
                 h1{
                     position: relative;
-                    top: 30%;
+                    top: 10%;
                     font-family: 'Times New Roman', Times, serif;
                 }
             }
             .saliency-edge-inpaint-use-case-picture{
-                flex: 4;
+                flex: 4.5;
                 // let inner element center horizontal and vertical.
                 // 让内部元素水平和垂直居中
                 display: flex;
                 justify-content: center;
                 img{
-                    width: 60%;
+                    width: 50%;
                     position: relative;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
                 }

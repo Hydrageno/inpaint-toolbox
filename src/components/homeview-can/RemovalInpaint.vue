@@ -52,7 +52,7 @@ export default{
     data(){
         return {
             egImageRIAddrs: ["https://i.328888.xyz/2023/04/16/iE7w2x.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            "https://i.328888.xyz/2023/04/16/iE7aex.png"],
             viewType: "RI"
         }    
     },
