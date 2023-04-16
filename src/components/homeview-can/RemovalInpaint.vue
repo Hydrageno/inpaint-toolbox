@@ -17,7 +17,7 @@
                     <span class="removal-inpaint-description-text-fluorescence">&nbsp;{{ deWaterMarkStains }}&nbsp;</span>
                     <span>&nbsp;{{ endTool }}</span>
                 </div>
-                <img src="@/assets/demo.gif" class="removal-inpaint-description-animation">
+                <img src="@/assets/ri_animation.gif" class="removal-inpaint-description-animation">
             </div>
         </div>
         <div class="removal-inpaint-upload-image">
@@ -30,7 +30,7 @@
                 <!--lesson picture for removal-inpaint-->
                 <!--为去水印添加教程图片-->
                 <div class="removal-inpaint-use-case-picture">
-                    <img src="@/assets/usecase.jpg">
+                    <img src="@/assets/ri_usecase.png">
                 </div>
                 <!--title for removal inpaint-->
                 <!--为去水印添加标题-->
@@ -51,7 +51,7 @@ export default{
     },
     data(){
         return {
-            egImageRIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
+            egImageRIAddrs: ["https://i.328888.xyz/2023/04/16/iE7w2x.png",
             "https://i.328888.xyz/2023/03/15/J5vEN.png"],
             viewType: "RI"
         }    
@@ -135,7 +135,7 @@ export default{
                 border-radius: 30px;
                 border-style: none;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                width: 25%;
+                width: 20%;
             }
         }
     }
@@ -162,7 +162,7 @@ export default{
             display: flex;
             justify-content: center;
             img{
-                width:60%;
+                width:50%;
                 // make the title and picture closer
                 // 让标题和图片更靠近
                 position: relative;
