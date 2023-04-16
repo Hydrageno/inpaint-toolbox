@@ -10,7 +10,7 @@
                     <span>{{ front }}</span>
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ object }}&nbsp;</span>&nbsp;,
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ people }}&nbsp;</span>&nbsp;,
-                    <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ scenery }}&nbsp;</span>&nbsp;,
+                    <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ scenery }}&nbsp;</span>&nbsp;,&nbsp;
                     <br>
                     <span class="tradition-inpaint-description-text-fluorescence">&nbsp;{{ animation }}&nbsp;</span>
                     <span>{{ later }}</span>
@@ -19,7 +19,7 @@
                 </div>
                 <!--add description animation for tradition-inpaint-->
                 <!--为图像修复添加描述性动画-->
-                <img  src="@/assets/demo.gif" class="tradition-inpaint-description-animation">
+                <img  src="@/assets/ti_animation.gif" class="tradition-inpaint-description-animation">
             </div>   
         </div>
         <div class="tradition-inpaint-upload-image">
@@ -37,7 +37,7 @@
                 <!--lesson picture for tradition-inpaint-->
                 <!--为图像修复添加教程图片-->
                 <div class="tradition-inpaint-use-case-picture">
-                    <img src="@/assets/usecase.jpg">
+                    <img src="@/assets/ti_usecase.png">
                 </div>
             </div>
         </div>
@@ -53,10 +53,10 @@ export default{
     },
     data(){
         return {
-            egImageTIAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            egImageTIAddrs: ["https://i.328888.xyz/2023/04/16/iEcBRJ.png",
+            "https://i.328888.xyz/2023/04/16/iEcEFN.png",
+            "https://i.328888.xyz/2023/04/16/iEcFxb.png",
+            "https://i.328888.xyz/2023/04/16/iExUV5.png"],
             viewType: "TI"
         }
     },
@@ -142,7 +142,7 @@ export default{
                 border-radius: 30px;
                 border-style: none;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                width: 25%;
+                width: 20%;
             }   
         }
     }
@@ -163,21 +163,21 @@ export default{
             align-items: center; 
             flex-direction: column;
             .tradition-inpaint-use-case-title{
-                flex: 1;
+                flex: 0.5;
                 h1{
                     position: relative;
-                    top: 30%;
+                    top: 10%;
                     font-family: 'Times New Roman', Times, serif;
                 }
             }
             .tradition-inpaint-use-case-picture{
-                flex: 4;
+                flex: 4.5;
                 // let inner element center horizontal and vertical.
                 // 让内部元素水平和垂直居中
                 display: flex;
                 justify-content: center;
                 img{
-                    width: 60%;
+                    width: 50%;
                     position: relative;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
                 }
