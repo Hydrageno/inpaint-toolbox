@@ -4,7 +4,7 @@
         <!--为超分辨率创建描述区-->
         <div class="super-resolution-description">
             <div class="super-resolution-description-content">
-                <img src="@/assets/demo.gif" class="super-resolution-description-animation">
+                <img src="@/assets/sr_animation.gif" class="super-resolution-description-animation">
                 <!--add description text for super-resolution-->
                 <!--为超分辨率添加描述性文字-->
                 <div class="super-resolution-description-text">
@@ -30,7 +30,7 @@
                 <!--lesson picture for super resolution-->
                 <!--为超分辨率添加教程图片-->
                 <div class="super-resolution-use-case-picture">
-                    <img src="@/assets/usecase.jpg">
+                    <img src="@/assets/sr_usecase.png">
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@ export default{
     data(){
         return {
             egImageSRAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/03/15/J5vEN.png"],
+            "https://i.328888.xyz/2023/04/16/iEx8jJ.png"],
             viewType: "SR"
         }
     },
@@ -100,7 +100,7 @@ export default{
                 border-radius: 30px;
                 border-style: none;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-                width: 25%;
+                width: 20%;
             }
             .super-resolution-description-text{
                 // set the style of font.
@@ -160,7 +160,7 @@ export default{
                 display: flex;
                 justify-content: center;
                 img{
-                    width:60%;
+                    width: 50%;
                     // make the title and picture closer
                     // 让标题和图片更靠近
                     position: relative;
