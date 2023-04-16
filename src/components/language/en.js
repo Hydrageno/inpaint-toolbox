@@ -102,7 +102,9 @@ export default {
                 eraseText: "ERASE",
                 penText: "PAINT",
                 selectMode: "Select Mode",
-                realWorld: "Real World",
+                celehq: "Human Face",
+                places: "Background",
+                imagenet: "Other",
                 animation: "Animated Character",
                 submit: "SUBMIT",
                 download: "DOWNLOAD"

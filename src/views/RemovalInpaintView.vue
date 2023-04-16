@@ -251,8 +251,14 @@ export default{
         selectMode(){
             return this.$t('removalInpaintView.toolBar.selectMode')
         },
-        realWorld(){
-            return this.$t('removalInpaintView.toolBar.realWorld')
+        celehq(){
+            return this.$t('removalInpaintView.toolBar.celehq')
+        },
+        places(){
+            return this.$t('removalInpaintView.toolBar.places')
+        },
+        imagenet(){
+            return this.$t('removalInpaintView.toolBar.imagenet')
         },
         animation(){
             return this.$t('removalInpaintView.toolBar.animation')
@@ -266,8 +272,16 @@ export default{
         modeOptions(){
             return [
                 {
+                    value: 1,
+                    label: this.celehq,
+                },
+                {
+                    value: 2,
+                    label: this.places,
+                },
+                {
                     value: 3,
-                    label: this.realWorld,
+                    label: this.imagenet,
                 },
                 {
                     value: 4,

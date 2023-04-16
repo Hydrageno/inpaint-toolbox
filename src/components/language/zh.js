@@ -102,7 +102,9 @@ export default {
                 eraseText: "橡皮擦模式",
                 penText: "绘画模式",
                 selectMode: "选择模式",
-                realWorld: "现实世界",
+                celehq: "人脸",
+                places: "背景",
+                imagenet: "其它",
                 animation: "动漫人物",
                 submit: "提交",
                 download: "下载"
