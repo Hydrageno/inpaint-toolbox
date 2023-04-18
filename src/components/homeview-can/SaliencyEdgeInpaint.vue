@@ -47,7 +47,7 @@ export default{
     },
     data(){
         return {
-            egImageSEIAddrs: ["https://i.328888.xyz/2023/04/16/iEEMUE.png"],
+            egImageSEIAddrs: ["https://i.328888.xyz/2023/04/16/iEx8jJ.png"],
             viewType: "SEI"
         }
     },
