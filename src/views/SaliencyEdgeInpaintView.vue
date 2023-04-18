@@ -407,7 +407,7 @@ h3{
     }
     .saliency-edge-inpaint-view-toolbar{
         height: 2.0em;
-        width: 70rem;
+        width: 65rem;
         position: fixed;
         overflow: hidden;
         // the distance between toolbar and bottom.
@@ -432,7 +432,7 @@ h3{
         align-items: center;
         .custom-thickness{
             //background-color: red;
-            flex: 3;
+            flex: 2.5;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             // make inner element center both horizontal and vertical.
             // 让内部元素水平、垂直居中。
@@ -453,7 +453,7 @@ h3{
                     color:black;
                 }
             }
-            flex: 1;
+            flex: 0.5;
         }
         .submit-painted{
             //background-color: yellow;
