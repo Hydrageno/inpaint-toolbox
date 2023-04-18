@@ -30,14 +30,7 @@
                 <!--Eraser for canvas-->
                 <!--画布的橡皮擦-->
                 <el-switch v-model="eraseOn" inline-prompt :active-text="eraseText" :inactive-text="penText" size="large"></el-switch>
-            </div>
-            <div class="mode-select">
-                <!--INPAINT MODE SELECTOR-->
-                <!--修复模式选择器-->
-                <el-select v-model="modeValue" :placeholder="selectMode">
-                    <el-option v-for="mode in modeOptions" :key="mode.value" :label="mode.label" :value="mode.value"></el-option>
-                </el-select>
-            </div>     
+            </div>    
             <div class="submit-painted">
                 <el-button size="small" @click="submitPainted" :disabled="submitLocked">
                     <h2>{{ submit }}</h2>
@@ -64,7 +57,6 @@
 
 <script>
 import { EditPen } from '@element-plus/icons-vue'
-import { ref } from 'vue'
 import store from '@/store'
 //import 'default-passive-events'
 
@@ -89,7 +81,7 @@ export default{
             scale: 1,
             translateX: 0,
             translateY: 0,
-            modeValue: ref(''),
+            modeValue: 4,
             // aims to prevent user from clicking the button.
             // 在服务器处理数据期间阻止用户点击按钮。
             hasSubmited: false,
@@ -357,22 +349,6 @@ export default{
         download(){
             return this.$t('saliencyEdgeInpaintView.toolBar.download')
         },
-        modeOptions(){
-            return [
-                {
-                    value: 1,
-                    label: this.celehq,
-                },
-                {
-                    value: 2,
-                    label: this.places,
-                },
-                {
-                    value: 3,
-                    label: this.imageNet,
-                },
-            ]
-        }
     },
     mounted(){
         // set the background image.
@@ -490,15 +466,6 @@ h3{
                 }
             }
             flex: 1;
-        }
-        .mode-select{
-            //background-color: black;
-            flex: 1;
-            // make inner element center horizontal.
-            // 让内部元素水平居中。
-            display: flex;
-            justify-content: center;
-
         }
         .submit-painted{
             //background-color: yellow;
