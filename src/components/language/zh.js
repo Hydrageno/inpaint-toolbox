@@ -118,8 +118,8 @@ export default {
                 penThickness: "调整笔粗细：",
                 eraseText: "橡皮擦模式",
                 penText: "绘画模式",
-                request: "显著边缘检测",
-                downloadSO: "下载显著目标",
+                request: "描绘线稿",
+                downloadSO: "下载关键目标",
                 submit: "提交",
                 download: "下载"
             },

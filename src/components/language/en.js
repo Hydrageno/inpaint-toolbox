@@ -118,8 +118,8 @@ export default {
                 penThickness: "Pen Thickness:",
                 eraseText: "ERASE",
                 penText: "PAINT",
-                request: "Req SE",
-                downloadSO: "DOWNLOAD SO",
+                request: "SKETCH EXTRACT",
+                downloadSO: "GET KEY",
                 submit: "SUBMIT",
                 download: "DOWNLOAD"
             },
