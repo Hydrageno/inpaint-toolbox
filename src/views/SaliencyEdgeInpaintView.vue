@@ -325,18 +325,6 @@ export default{
         penText(){
             return this.$t('saliencyEdgeInpaintView.toolBar.penText')
         },
-        selectMode(){
-            return this.$t('saliencyEdgeInpaintView.toolBar.selectMode')
-        },
-        celehq(){
-            return this.$t('saliencyEdgeInpaintView.toolBar.celehq')
-        },
-        places(){
-            return this.$t('saliencyEdgeInpaintView.toolBar.places')
-        },
-        imageNet(){
-            return this.$t('saliencyEdgeInpaintView.toolBar.imageNet')
-        },
         submit(){
             return this.$t('saliencyEdgeInpaintView.toolBar.submit')
         },
