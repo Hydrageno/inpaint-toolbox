@@ -53,10 +53,9 @@ export default{
     },
     data(){
         return {
-            egImageTIAddrs: ["https://i.328888.xyz/2023/04/16/iEcBRJ.png",
-            "https://i.328888.xyz/2023/04/16/iEcEFN.png",
-            "https://i.328888.xyz/2023/04/16/iEcFxb.png",
-            "https://i.328888.xyz/2023/04/16/iExUV5.png"],
+            egImageTIAddrs: ["https://i.328888.xyz/2023/05/03/iM2mM8.png",
+            "https://i.328888.xyz/2023/05/03/iM2BtZ.png",
+            "https://i.328888.xyz/2023/05/03/iM2XcF.png"],
             viewType: "TI"
         }
     },
