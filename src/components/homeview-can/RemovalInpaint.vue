@@ -51,7 +51,7 @@ export default{
     },
     data(){
         return {
-            egImageRIAddrs: ["https://i.328888.xyz/2023/05/03/iM27fQ.jpeg"],
+            egImageRIAddrs: ["https://i.imgtg.com/2023/05/25/OaYo9I.png"],
             viewType: "RI"
         }    
     },

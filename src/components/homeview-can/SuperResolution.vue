@@ -46,8 +46,8 @@ export default{
     },
     data(){
         return {
-            egImageSRAddrs: ["https://i.328888.xyz/2023/03/15/J5vEN.png",
-            "https://i.328888.xyz/2023/04/16/iEx8jJ.png"],
+            egImageSRAddrs: ["https://i.imgtg.com/2023/05/25/OaVwIM.jpg",
+            "https://i.imgtg.com/2023/05/25/OaYOFG.png"],
             viewType: "SR"
         }
     },
